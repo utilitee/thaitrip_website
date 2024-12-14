@@ -1,0 +1,25 @@
+name: Local Docker Deployment
+
+on: 
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  deploy:
+    runs-on: self hosted
+    steps:
+      - name: Stop existing container
+        run: |
+          docker stop moojee-container || true
+          docker rm moojee-container || true
+        continue-on-error: true
+
+      - name: Pull latest image
+        run: docker pull utilitee/moojee-project:latest
+
+      - name: Run container
+        run: |
+          docker run -d \
+            --name moojee-container \
+            --restart always \
+            -p 2080:80 \
+            utilitee/moojee-project:latest
