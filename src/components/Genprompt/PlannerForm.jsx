@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 
-// รายการจังหวัดสำหรับเลือก
+// Keeping existing constants (provinces, startLocations, travelMethods, customStyles)...
 const provinces = [
   { value: "bangkok", label: "กรุงเทพมหานคร" },
   { value: "krabi", label: "กระบี่" },
@@ -87,14 +87,12 @@ const provinces = [
 
 const startLocations = provinces;
 
-// รายการวิธีการเดินทาง
 const travelMethods = [
   { value: "bus", label: "รถโดยสาร" },
   { value: "plane", label: "เครื่องบิน" },
   { value: "car", label: "รถส่วนตัว" },
 ];
 
-// กำหนดสไตล์ custom สำหรับ Select
 const customStyles = {
   control: (base, state) => ({
     ...base,
@@ -130,7 +128,6 @@ const customStyles = {
 };
 
 const PlannerForm = () => {
-  // State สำหรับเก็บข้อมูลฟอร์ม
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [travelDates, setTravelDates] = useState({ start: null, end: null });
   const [travelMethod, setTravelMethod] = useState(null);
@@ -138,9 +135,33 @@ const PlannerForm = () => {
   const [specialRequest, setSpecialRequest] = useState("");
   const [copiedText, setCopiedText] = useState("");
   const [startLocation, setStartLocation] = useState(null);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [filledFieldsCount, setFilledFieldsCount] = useState(0);
 
-  // ฟังก์ชันจัดการการส่งข้อมูล
+  // Check if at least 3 fields are filled
+  useEffect(() => {
+    const countFilledFields = () => {
+      let count = 0;
+      
+      // Count filled fields
+      if (selectedProvince?.length > 0) count++;
+      if (startLocation) count++;
+      if (travelDates.start) count++;
+      if (travelDates.end) count++;
+      if (travelMethod) count++;
+      if (budget.trim()) count++;
+      if (specialRequest.trim()) count++;
+
+      setFilledFieldsCount(count);
+      setIsFormValid(count >= 3);
+    };
+
+    countFilledFields();
+  }, [selectedProvince, startLocation, travelDates, travelMethod, budget, specialRequest]);
+
   const handleSubmit = () => {
+    if (!isFormValid) return;
+
     const selectedProvinceNames =
       selectedProvince?.map((location) => location.label).join(" และ ") ||
       "ไม่ระบุ";
@@ -153,31 +174,20 @@ const PlannerForm = () => {
     } วิธีการเดินทาง: ${travelMethod?.label || "ไม่ระบุ"} งบประมาณ: ${
       budget || "ไม่ระบุ"
     } สิ่งที่อยากทำ/ที่อยากไป: ${specialRequest || "ไม่มี"}`;
-  
+
     try {
-      // คัดลอกข้อความ
       navigator.clipboard.writeText(prompt).then(() => {
         setCopiedText(prompt);
-  
-        // เข้ารหัส prompt ก่อนส่งไปยัง URL
-        const url = `https://thaitripsau.utilitee.me?q=${prompt}`
-  
-        // เปิดหน้าต่างใหม่
-        const newWindow = window.open(
-          url, 
-          "_blank", 
-          "width=1480,height=980"
-        );
-  
+        const url = `https://thaitripsau.utilitee.me?q=${prompt}`;
+        const newWindow = window.open(url, "_blank", "width=1480,height=980");
+
         if (!newWindow) {
           alert("กรุณาอนุญาตให้เปิดป๊อปอัพ");
           return;
         }
-  
-        // รอให้หน้าเว็บโหลด
+
         newWindow.addEventListener('load', () => {
           try {
-            // ค้นหา input และปุ่มส่ง (ปรับ selector ตามเว็บไซต์)
             const inputField = newWindow.document.querySelector('input[name="prompt"], #prompt-input, textarea[name="prompt"]');
             const sendButton = newWindow.document.querySelector('button[type="submit"], #send-button');
             
@@ -193,7 +203,6 @@ const PlannerForm = () => {
             console.error('เกิดข้อผิดพลาดในการกรอกข้อมูล:', err);
           }
         });
-  
       }).catch((err) => {
         console.error('ไม่สามารถคัดลอกข้อความได้:', err);
         alert('ไม่สามารถคัดลอกข้อความได้ กรุณาลองอีกครั้ง');
@@ -202,7 +211,6 @@ const PlannerForm = () => {
       console.error('เกิดข้อผิดพลาด:', err);
       alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
     }
-  
   };
 
   return (
@@ -212,10 +220,7 @@ const PlannerForm = () => {
           วางแผนทริปท่องเที่ยว
         </h2>
 
-        {/* ฟอร์มกรอกข้อมูล */}
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
           <div className="mb-2">
             <label className="block text-sm font-medium text-gray-400 mb-2">
               สถานที่เริ่มต้น
@@ -229,7 +234,6 @@ const PlannerForm = () => {
             />
           </div>
 
-          {/* เลือกจังหวัด */}
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-2">
               จังหวัดที่ต้องการท่องเที่ยว(เลือกได้มากกว่า 1)
@@ -238,29 +242,25 @@ const PlannerForm = () => {
               options={provinces}
               onChange={setSelectedProvince}
               isSearchable
-              isMulti // เพิ่มการเลือกหลายตัวเลือก
+              isMulti
               placeholder="เลือกจังหวัด..."
               styles={customStyles}
             />
           </div>
 
-          {/* วันเริ่มทริป */}
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-2">
               วันที่ออกเดินทาง
             </label>
             <DatePicker
               selected={travelDates.start}
-              onChange={(date) =>
-                setTravelDates({ ...travelDates, start: date })
-              }
+              onChange={(date) => setTravelDates({ ...travelDates, start: date })}
               placeholderText="วันไป"
               className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
               dateFormat="d MMMM yyyy"
             />
           </div>
 
-          {/* วันสิ้นสุดทริป */}
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-2">
               วันที่เดินทางกลับ
@@ -271,11 +271,9 @@ const PlannerForm = () => {
               placeholderText="วันกลับ"
               className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
               dateFormat="d MMMM yyyy"
-              
             />
           </div>
 
-          {/* เลือกวิธีการเดินทาง */}
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-2">
               วิธีเดินทาง
@@ -285,17 +283,9 @@ const PlannerForm = () => {
               onChange={setTravelMethod}
               placeholder="วิธีเดินทาง..."
               styles={customStyles}
-              // styles={{
-              //   control: (base) => ({
-              //     ...base,
-              //     borderColor: "#D1D5DB",
-              //     "&:hover": { borderColor: "#6B7280" },
-              //   }),
-              // }}
             />
           </div>
 
-          {/* งบประมาณ */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-400 mb-2">
               งบประมาณ (บาท)
@@ -306,11 +296,9 @@ const PlannerForm = () => {
               onChange={(e) => setBudget(e.target.value)}
               placeholder="ระบุงบประมาณ"
               className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
-              
             />
           </div>
 
-          {/* กิจกรรมพิเศษ */}
           <div className="mb-4">
             <label className="block text-xs font-medium text-gray-400 mb-2">
               สถานที่/กิจกรรมพิเศษที่สนใจ
@@ -320,21 +308,27 @@ const PlannerForm = () => {
               onChange={(e) => setSpecialRequest(e.target.value)}
               placeholder="ระบุสถานที่หรือกิจกรรมพิเศษ"
               className="w-full p-2 border border-gray-300 rounded text-sm min-h-[50px] focus:ring-2 focus:ring-gray-200"
-            ></textarea>
+            />
           </div>
 
-          {/* ปุ่ม คัดลอก ส่ง */}
-          <div className="flex items-end justify-center max-h-fulll mb-6 bg- ">
+          <div className="flex flex-col items-end justify-center max-h-full mb-6">
             <button
               onClick={handleSubmit}
-              className="btn bg-gray-500 text-gray-50 "
+              disabled={!isFormValid}
+              className={`btn ${
+                !isFormValid 
+                ? 'bg-gray-300 cursor-not-allowed' 
+                : 'bg-gray-500 hover:bg-gray-600'
+              } text-gray-50 transition-colors duration-200`}
             >
               Create Plan
             </button>
+            <div className="text-sm text-gray-400 mt-2">
+              กรอกข้อมูลอย่างน้อย 3 ช่อง ({filledFieldsCount}/3)
+            </div>
           </div>
         </div>
 
-        {/* ส่วนแสดงข้อความที่คัดลอก */}
         {copiedText && (
           <div className="bg-gray-100 p-4 rounded mt-4">
             <label className="block text-sm font-medium text-gray-400 mb-2">
