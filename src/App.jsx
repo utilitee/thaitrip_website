@@ -10,7 +10,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Guidepage from "./pages/Guidepage.jsx";
-import ThaiTripPage from "./pages/ThaiTripPage.jsx";
+import ThaiTripPage from "./pages/Thaitrippage.jsx";
 
 export default function App() {
   return (
