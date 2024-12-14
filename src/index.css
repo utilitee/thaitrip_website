@@ -6,3 +6,9 @@ html {
 @tailwind utilities;
 
 
+/* Add this to your CSS file */
+.react-datepicker__input-container input,
+input[type="number"],
+textarea {
+  background-color: white !important;
+}

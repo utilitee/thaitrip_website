@@ -246,7 +246,7 @@ const PlannerForm = () => {
 
           {/* วันเริ่มทริป */}
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-2 bg-white">
+            <label className="block text-sm font-medium text-gray-400 mb-2">
               วันที่ออกเดินทาง
             </label>
             <DatePicker
@@ -262,7 +262,7 @@ const PlannerForm = () => {
 
           {/* วันสิ้นสุดทริป */}
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-2 bg-white">
+            <label className="block text-sm font-medium text-gray-400 mb-2">
               วันที่เดินทางกลับ
             </label>
             <DatePicker
@@ -297,7 +297,7 @@ const PlannerForm = () => {
 
           {/* งบประมาณ */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-2 bg-white">
+            <label className="block text-sm font-medium text-gray-400 mb-2">
               งบประมาณ (บาท)
             </label>
             <input
@@ -312,7 +312,7 @@ const PlannerForm = () => {
 
           {/* กิจกรรมพิเศษ */}
           <div className="mb-4">
-            <label className="block text-xs font-medium text-gray-400 mb-2 bg-white">
+            <label className="block text-xs font-medium text-gray-400 mb-2">
               สถานที่/กิจกรรมพิเศษที่สนใจ
             </label>
             <textarea
