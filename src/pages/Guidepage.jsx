@@ -10,7 +10,7 @@ import PlannerForm from "../components/Genprompt/PlannerForm";
 // นำเข้ารูปภาพ AW ต่าง ๆ
 import artworkIntro from "../assets/images/artwork/Aatwork Intro.png";
 import hey from "../assets/images/artwork/hey.png";
-import AWtest from "../assets/images/artwork/AWtest (1).png";
+import AWtest from "../assets/images/artwork/AWtest (3).png";
 
 
 // นำเข้า Icon
