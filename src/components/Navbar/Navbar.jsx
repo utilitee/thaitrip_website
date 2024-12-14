@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react"; // Import icons for mobile menu
 
 export default function Navbar() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleThaitripClick = () => {
     window.open(
@@ -12,16 +14,24 @@ export default function Navbar() {
     );
   };
 
-  // Add smooth scroll function for hash links
   const scrollToSection = (elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsMobileMenuOpen(false); // Close mobile menu after clicking
   };
 
+  const navLinks = [
+    { title: "Generate Prompt", id: "createprompt" },
+    { title: "About", id: "about" },
+    { title: "How to Use", id: "howtouse" },
+    { title: "Chat Tips", id: "tips" },
+  ];
+
   return (
-    <div className="navbar bg-base-100 sticky top-0 z-10">
+    <div className="navbar bg-base-100 sticky top-0 z-10 px-4">
+      {/* Logo Section */}
       <div className="flex-1">
         <button 
           onClick={handleThaitripClick}
@@ -30,41 +40,53 @@ export default function Navbar() {
           className="btn btn-ghost text-xl flex items-center space-x-2"
         >
           <img
-	    src={isHovered ? "/images/Logo/HoverLogo.png" : "/images/Logo/Logo.png"}
+            src={isHovered ? "/images/Logo/HoverLogo.png" : "/images/Logo/Logo.png"}
             alt="Thaitrip Logo"
             className="h-10 w-10 transition-transform duration-300 hover:scale-110"
           />
           <span className="hover:text-blue-600 transition-colors duration-300">ThaiTrip</span>
         </button>
-        
-        <button 
-          onClick={() => scrollToSection('createprompt')} 
-          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
-        >
-          Generate Prompt
-        </button>
+      </div>
 
-        <button 
-          onClick={() => scrollToSection('about')} 
-          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
-        >
-          About
-        </button>
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex space-x-2">
+        {navLinks.map((link) => (
+          <button 
+            key={link.id}
+            onClick={() => scrollToSection(link.id)} 
+            className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
+          >
+            {link.title}
+          </button>
+        ))}
+      </div>
 
-        <button 
-          onClick={() => scrollToSection('howtouse')} 
-          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
+      {/* Mobile Menu Button */}
+      <div className="md:hidden">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="btn btn-ghost"
         >
-          How to Use
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
+      </div>
 
-        <button 
-          onClick={() => scrollToSection('tips')} 
-          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
-        >
-          Chat Tips
-        </button>
-      </div>      
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-base-100 shadow-lg md:hidden">
+          <div className="flex flex-col p-4 space-y-2">
+            {navLinks.map((link) => (
+              <button 
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300 justify-start"
+              >
+                {link.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
