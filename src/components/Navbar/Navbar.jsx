@@ -1,82 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const location = useLocation(); // ใช้ hook เพื่อดึงเส้นทางปัจจุบัน
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleThaitripClick = () => {
     window.open(
-      "https://thaitripsau.utilitee.me", // ลิงก์ที่ต้องการเปิด
-      "Thaitrip", // ชื่อของหน้าต่าง (สามารถใช้ได้หลายครั้งในหน้าเดียวกัน)
-      "width=1480,height=980,scrollbars=yes" // ตัวเลือกของ popup (ขนาดหน้าต่างและการเปิด scrollbars)
+      "https://thaitripsau.utilitee.me",
+      "Thaitrip",
+      "width=1480,height=980,scrollbars=yes"
     );
+  };
+
+  // Add smooth scroll function for hash links
+  const scrollToSection = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="navbar bg-base-100 sticky top-0 z-10">
-
-       {/* ปุ่ม option สามขีด ใส่ไว้เผื่อมีอะไร ถ้าไม่ใช้ค่อยเอาออก
-      <div className="flex-none">
-        <button className="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block h-5 w-5 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-      </div> */}
-
-
-      {/* ปุ่ม Thaitrip และ single page อื่นๆ */}
       <div className="flex-1">
-        <button onClick={handleThaitripClick}
+        <button 
+          onClick={handleThaitripClick}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           className="btn btn-ghost text-xl flex items-center space-x-2"
         >
           <img
-            src="/src/assets/images/Logo/Logo.png"
+            src={isHovered ? "/src/assets/images/Logo/HoverLogo.png" : "/src/assets/images/Logo/Logo.png"}
             alt="Thaitrip Logo"
-            className="h-10 w-10" 
+            className="h-10 w-10 transition-transform duration-300 hover:scale-110"
           />
-          <span>Thaitrip</span>
+          <span className="hover:text-blue-600 transition-colors duration-300">ThaiTrip</span>
         </button>
-        {/* ปุ่มGuide ทำไว้เผื่อเพิ่มหน้า*/}
-        {/* <Link to="/guide" className="btn btn-ghost text-xl"> Guide </Link>  */}
         
-        <a href="#createprompt" className="btn btn-ghost text-l"> Generate Prompt</a>
-        <a href="#about" className="btn btn-ghost text-l">About </a>
-        <a href="#howtouse" className="btn btn-ghost text-l"> How to Use</a>
-        <a href="#tips" className="btn btn-ghost text-l">Chat Tips</a>
-      </div>
-
-      {/* ปุ่ม option สามจุด ใส่ไว้เผื่อมีอะไร ถ้าไม่ใช้ค่อยเอาออก */}
-      {/* <div className="flex-none">
-        <button className="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block h-5 w-5 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-            ></path>
-          </svg>
+        <button 
+          onClick={() => scrollToSection('createprompt')} 
+          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
+        >
+          Generate Prompt
         </button>
-      </div> */}
 
-      
+        <button 
+          onClick={() => scrollToSection('about')} 
+          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
+        >
+          About
+        </button>
+
+        <button 
+          onClick={() => scrollToSection('howtouse')} 
+          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
+        >
+          How to Use
+        </button>
+
+        <button 
+          onClick={() => scrollToSection('tips')} 
+          className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
+        >
+          Chat Tips
+        </button>
+      </div>      
     </div>
   );
 }

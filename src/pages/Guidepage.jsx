@@ -164,7 +164,6 @@ const Guidepage = () => {
   return (
     <>
       {/*เรียกใช้ navbar */}
-      <Navbar />
 
       {/* พื้นที่ของ page ทั้งหมด หรือคอนเทนเนอร์หลัก ใช้พื้นหลังสีเทา และตัวอักษรสีเทาเข้ม */}
       <div className="min-h-screen bg-gray-100 text-gray-900 p-6">
