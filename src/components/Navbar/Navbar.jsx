@@ -30,7 +30,7 @@ export default function Navbar() {
           className="btn btn-ghost text-xl flex items-center space-x-2"
         >
           <img
-            src={isHovered ? "/src/assets/images/Logo/HoverLogo.png" : "/src/assets/images/Logo/Logo.png"}
+            src={isHovered ? "./src/assets/images/Logo/HoverLogo.png" : "./src/assets/images/Logo/Logo.png"}
             alt="Thaitrip Logo"
             className="h-10 w-10 transition-transform duration-300 hover:scale-110"
           />
