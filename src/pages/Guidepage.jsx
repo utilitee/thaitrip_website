@@ -6,6 +6,7 @@ import React from "react";
 // นำเข้า Navbar compo section
 import Navbar from "../components/Navbar/Navbar";
 import PlannerForm from "../components/Genprompt/PlannerForm";
+import ScrollToTopButton from "../components/Button/ScrollToTopButton";
 
 // นำเข้ารูปภาพ AW ต่าง ๆ
 import artworkIntro from "../assets/images/artwork/Aatwork Intro.png";
@@ -378,6 +379,8 @@ const Guidepage = () => {
         {/*////////////////////////////////////////////////////////////////////// */}
 
         {/* Section อื่น ๆ เพิ่มเติม เผื่อมี */}
+        <ScrollToTopButton/>
+
       </div>
     </>
   );

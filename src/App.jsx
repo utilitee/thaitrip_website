@@ -1,7 +1,7 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar/Navbar'
-import Home from './pages/Guidepage'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Guidepage";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/thaitrip" element={<Home />} />
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
