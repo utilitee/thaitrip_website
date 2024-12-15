@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Select from "react-select";
-import DatePicker from "react-datepicker";
+import Select from "react-select"; // ไลบรารีไว้สร้าง Dropdown Select Box
+import DatePicker from "react-datepicker"; // ไลบรารีไว้เลือกวันที่ แบบปฏิทิน
 import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
+import { format } from "date-fns"; //  ไลบรารีเซ็ทฟอร์แมตวันที่
 
 // Keeping existing constants (provinces, startLocations, travelMethods, customStyles)...
+// ตัวแปล provinces - เป็น array ที่เก็บข้อมูลจังหวัดต่าง ๆ 
 const provinces = [
   { value: "bangkok", label: "กรุงเทพมหานคร" },
   { value: "krabi", label: "กระบี่" },
@@ -85,14 +86,17 @@ const provinces = [
   { value: "ubonratchathani", label: "อุบลราชธานี" },
 ];
 
+// ประกาศฟังชั่น startLocations ให้เลือกจังหวัดได้แบบเดวกับ provinces ชุดข้อมูลเดียวกัน
 const startLocations = provinces;
 
+// สร้างตัวแปล ให้เลือกวิธีเดินทาง 
 const travelMethods = [
   { value: "bus", label: "รถโดยสาร" },
   { value: "plane", label: "เครื่องบิน" },
   { value: "car", label: "รถส่วนตัว" },
 ];
 
+// ประกาศฟังชั่น customStyles เพื่อกำหนด style ให้ react-select (ใช้กับพวก dropdown ) เป็น css แบบ inline
 const customStyles = {
   control: (base, state) => ({
     ...base,
@@ -127,18 +131,22 @@ const customStyles = {
   }),
 };
 
+// ประกาศฟังชั่น PlannerForm โดชใช้ useState เพื่อเก็บข้อมูลต่าง ๆ จากฟอร์ม แต่ละ State
 const PlannerForm = () => {
-  const [selectedProvince, setSelectedProvince] = useState(null);
-  const [travelDates, setTravelDates] = useState({ start: null, end: null });
-  const [travelMethod, setTravelMethod] = useState(null);
-  const [budget, setBudget] = useState("");
-  const [specialRequest, setSpecialRequest] = useState("");
-  const [copiedText, setCopiedText] = useState("");
-  const [startLocation, setStartLocation] = useState(null);
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [filledFieldsCount, setFilledFieldsCount] = useState(0);
+  const [selectedProvince, setSelectedProvince] = useState(null); // เก็บข้อมูลจังหวัด
+  const [travelDates, setTravelDates] = useState({ start: null, end: null }); // เก็บข้อมูลวันที่เริ่ม และ สิ้นสุด ในรูปแบบอ็อบเจ็กต์
+  const [travelMethod, setTravelMethod] = useState(null); // เก็บข้อมูลวิธีการเดินทาง
+  const [budget, setBudget] = useState(""); // เก็บข้อมูลงบประมาณ
+  const [specialRequest, setSpecialRequest] = useState(""); // เก็บข้อมูลรีเควสพิเศษ 
+  const [copiedText, setCopiedText] = useState(""); // เก็บข้อความที่คัดลอก
+  const [startLocation, setStartLocation] = useState(null); // เก็บข้อมูลสถานที่เริ่มต้น
+  const [isFormValid, setIsFormValid] = useState(false); // ใช้เก็บสถานะการตรวจสอบความถูกต้องของฟอร์ม โดยเริ่มต้นเป็น false (ฟอร์มไม่สมบูรณ์)
+  const [filledFieldsCount, setFilledFieldsCount] = useState(0); // ใช้เก็บจำนวนฟิลด์ในฟอร์มที่กรอก
+  // ฟังก์ชัน setIsFormValid และ setFilledFieldsCount ใช้ในการตรวจสอบว่า ฟอร์มนี้สามารถส่งได้ไหม โดยจะทำการเช็คค่าของช่องทั้งหมดในฟอร์ม
+  
 
   // Check if at least 3 fields are filled
+  // useEffect ใช้ตรวจสอบทุกครั้งที่ state เปลี่ยน
   useEffect(() => {
     const countFilledFields = () => {
       let count = 0;
@@ -156,12 +164,15 @@ const PlannerForm = () => {
       setIsFormValid(count >= 3);
     };
 
+    // countFilledFields นับจำนวนช่องที่ถูกกรอก ถ้ากรอกครบ 3 ช่องขึ้นไป จะทำให้ isFormValid เป็น true
     countFilledFields();
   }, [selectedProvince, startLocation, travelDates, travelMethod, budget, specialRequest]);
 
+  // ตรวจสอบ isFormValid - ถ้ายังกรอกไม่ครบ 3 ช่องจะไม่ทำอะไร
   const handleSubmit = () => {
     if (!isFormValid) return;
 
+  //สร้าง prompt - โดยรวบรวมข้อมูลจาก state มาเรียบเรียง
     const selectedProvinceNames =
       selectedProvince?.map((location) => location.label).join(" และ ") ||
       "ไม่ระบุ";
@@ -175,6 +186,8 @@ const PlannerForm = () => {
       budget || "ไม่ระบุ"
     } สิ่งที่อยากทำ/ที่อยากไป: ${specialRequest || "ไม่มี"}`;
 
+    // คัดลอกข้อความไปยังคลิปบอร์ด - ใช้ navigator.clipboard.writeText
+    // เปิดหน้าต่างใหม่ เป็นป้อบอัพ - ไปยัง URL โดยส่ง prompt เป็น query parameter
     try {
       navigator.clipboard.writeText(prompt).then(() => {
         setCopiedText(prompt);
