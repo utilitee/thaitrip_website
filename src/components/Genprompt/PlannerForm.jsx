@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns"; //  ไลบรารีเซ็ทฟอร์แมตวันที่
 
 // Keeping existing constants (provinces, startLocations, travelMethods, customStyles)...
-// ตัวแปล provinces - เป็น array ที่เก็บข้อมูลจังหวัดต่าง ๆ 
+// ตัวแปล provinces - เป็น array ที่เก็บข้อมูลจังหวัดต่าง ๆ
 const provinces = [
   { value: "bangkok", label: "กรุงเทพมหานคร" },
   { value: "krabi", label: "กระบี่" },
@@ -89,12 +89,22 @@ const provinces = [
 // ประกาศฟังชั่น startLocations ให้เลือกจังหวัดได้แบบเดวกับ provinces ชุดข้อมูลเดียวกัน
 const startLocations = provinces;
 
-// สร้างตัวแปล ให้เลือกวิธีเดินทาง 
+// สร้างตัวแปล ให้เลือกวิธีเดินทาง
 const travelMethods = [
   { value: "bus", label: "รถโดยสาร" },
   { value: "plane", label: "เครื่องบิน" },
   { value: "car", label: "รถส่วนตัว" },
 ];
+
+// ฟังก์ชันการแสดงผล comma
+
+const formatNumber = (value) => {
+  let number = value.replace(/[^0-9]/g, "");
+  if (number) {
+    number = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  return number;
+};
 
 // ประกาศฟังชั่น customStyles เพื่อกำหนด style ให้ react-select (ใช้กับพวก dropdown ) เป็น css แบบ inline
 const customStyles = {
@@ -137,20 +147,19 @@ const PlannerForm = () => {
   const [travelDates, setTravelDates] = useState({ start: null, end: null }); // เก็บข้อมูลวันที่เริ่ม และ สิ้นสุด ในรูปแบบอ็อบเจ็กต์
   const [travelMethod, setTravelMethod] = useState(null); // เก็บข้อมูลวิธีการเดินทาง
   const [budget, setBudget] = useState(""); // เก็บข้อมูลงบประมาณ
-  const [specialRequest, setSpecialRequest] = useState(""); // เก็บข้อมูลรีเควสพิเศษ 
+  const [specialRequest, setSpecialRequest] = useState(""); // เก็บข้อมูลรีเควสพิเศษ
   const [copiedText, setCopiedText] = useState(""); // เก็บข้อความที่คัดลอก
   const [startLocation, setStartLocation] = useState(null); // เก็บข้อมูลสถานที่เริ่มต้น
   const [isFormValid, setIsFormValid] = useState(false); // ใช้เก็บสถานะการตรวจสอบความถูกต้องของฟอร์ม โดยเริ่มต้นเป็น false (ฟอร์มไม่สมบูรณ์)
   const [filledFieldsCount, setFilledFieldsCount] = useState(0); // ใช้เก็บจำนวนฟิลด์ในฟอร์มที่กรอก
   // ฟังก์ชัน setIsFormValid และ setFilledFieldsCount ใช้ในการตรวจสอบว่า ฟอร์มนี้สามารถส่งได้ไหม โดยจะทำการเช็คค่าของช่องทั้งหมดในฟอร์ม
-  
 
   // Check if at least 3 fields are filled
   // useEffect ใช้ตรวจสอบทุกครั้งที่ state เปลี่ยน
   useEffect(() => {
     const countFilledFields = () => {
       let count = 0;
-      
+
       // Count filled fields
       if (selectedProvince?.length > 0) count++;
       if (startLocation) count++;
@@ -166,13 +175,20 @@ const PlannerForm = () => {
 
     // countFilledFields นับจำนวนช่องที่ถูกกรอก ถ้ากรอกครบ 3 ช่องขึ้นไป จะทำให้ isFormValid เป็น true
     countFilledFields();
-  }, [selectedProvince, startLocation, travelDates, travelMethod, budget, specialRequest]);
+  }, [
+    selectedProvince,
+    startLocation,
+    travelDates,
+    travelMethod,
+    budget,
+    specialRequest,
+  ]);
 
   // ตรวจสอบ isFormValid - ถ้ายังกรอกไม่ครบ 3 ช่องจะไม่ทำอะไร
   const handleSubmit = () => {
     if (!isFormValid) return;
 
-  //สร้าง prompt - โดยรวบรวมข้อมูลจาก state มาเรียบเรียง
+    //สร้าง prompt - โดยรวบรวมข้อมูลจาก state มาเรียบเรียง
     const selectedProvinceNames =
       selectedProvince?.map((location) => location.label).join(" และ ") ||
       "ไม่ระบุ";
@@ -189,106 +205,125 @@ const PlannerForm = () => {
     // คัดลอกข้อความไปยังคลิปบอร์ด - ใช้ navigator.clipboard.writeText
     // เปิดหน้าต่างใหม่ เป็นป้อบอัพ - ไปยัง URL โดยส่ง prompt เป็น query parameter
     try {
-      navigator.clipboard.writeText(prompt).then(() => {
-        setCopiedText(prompt);
-        const url = `https://thaitripsau.utilitee.me?q=${prompt}`;
-        const newWindow = window.open(url, "_blank", "width=1480,height=980");
+      navigator.clipboard
+        .writeText(prompt)
+        .then(() => {
+          setCopiedText(prompt);
+          const url = `https://thaitripsau.utilitee.me?q=${prompt}`;
+          const newWindow = window.open(url, "_blank", "width=1480,height=980");
 
-        if (!newWindow) {
-          alert("กรุณาอนุญาตให้เปิดป๊อปอัพ");
-          return;
-        }
-
-        newWindow.addEventListener('load', () => {
-          try {
-            const inputField = newWindow.document.querySelector('input[name="prompt"], #prompt-input, textarea[name="prompt"]');
-            const sendButton = newWindow.document.querySelector('button[type="submit"], #send-button');
-            
-            if (inputField) {
-              inputField.value = prompt;
-              inputField.dispatchEvent(new Event('input', { bubbles: true }));
-            }
-            
-            if (sendButton) {
-              sendButton.click();
-            }
-          } catch (err) {
-            console.error('เกิดข้อผิดพลาดในการกรอกข้อมูล:', err);
+          if (!newWindow) {
+            alert("กรุณาอนุญาตให้เปิดป๊อปอัพ");
+            return;
           }
+
+          newWindow.addEventListener("load", () => {
+            try {
+              const inputField = newWindow.document.querySelector(
+                'input[name="prompt"], #prompt-input, textarea[name="prompt"]'
+              );
+              const sendButton = newWindow.document.querySelector(
+                'button[type="submit"], #send-button'
+              );
+
+              if (inputField) {
+                inputField.value = prompt;
+                inputField.dispatchEvent(new Event("input", { bubbles: true }));
+              }
+
+              if (sendButton) {
+                sendButton.click();
+              }
+            } catch (err) {
+              console.error("เกิดข้อผิดพลาดในการกรอกข้อมูล:", err);
+            }
+          });
+        })
+        .catch((err) => {
+          console.error("ไม่สามารถคัดลอกข้อความได้:", err);
+          alert("ไม่สามารถคัดลอกข้อความได้ กรุณาลองอีกครั้ง");
         });
-      }).catch((err) => {
-        console.error('ไม่สามารถคัดลอกข้อความได้:', err);
-        alert('ไม่สามารถคัดลอกข้อความได้ กรุณาลองอีกครั้ง');
-      });
     } catch (err) {
-      console.error('เกิดข้อผิดพลาด:', err);
-      alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
+      console.error("เกิดข้อผิดพลาด:", err);
+      alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
     }
   };
 
   return (
-    <div className="bg-gray-50 max-h-screen flex items-center justify-center p-2">
-      <div className="w-full max-w-6xl bg-white shadow-md rounded-lg p-4">
-        <h2 className="text-2xl font-bold text-gray-500 mb-4 text-center">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[url('./src/assets/images/artwork/Thailavd2.jpg')] bg-cover bg-center">
+      <div className="w-full max-w-4xl bg-white/70 shadow-lg rounded-xl p-6 space-y-6 ">
+        <h2 className="text-3xl font-bold text-gray-700 text-center mb-6">
           วางแผนทริปท่องเที่ยว
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="mb-2">
-            <label className="block text-sm font-medium text-gray-400 mb-2">
-              สถานที่เริ่มต้น
-            </label>
-            <Select
-              options={startLocations}
-              onChange={setStartLocation}
-              isSearchable
-              placeholder="เลือกสถานที่เริ่มต้น..."
-              styles={customStyles}
-            />
+        <div className="grid md:grid-cols-2 gap-2 justify-center items-center ">
+          {/* กลุ่มสถานที่เริ่มต้นและจังหวัด */}
+          <div className="space-y-4 ml-20">
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                สถานที่เริ่มต้น
+              </label>
+              <Select
+                options={startLocations}
+                onChange={setStartLocation}
+                isSearchable
+                placeholder="เลือกสถานที่เริ่มต้น..."
+                styles={customStyles}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                จังหวัดที่ต้องการท่องเที่ยว
+              </label>
+              <Select
+                options={provinces}
+                onChange={setSelectedProvince}
+                isSearchable
+                isMulti
+                placeholder="เลือกจังหวัด..."
+                styles={customStyles}
+              />
+            </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-400 mb-2">
-              จังหวัดที่ต้องการท่องเที่ยว(เลือกได้มากกว่า 1)
-            </label>
-            <Select
-              options={provinces}
-              onChange={setSelectedProvince}
-              isSearchable
-              isMulti
-              placeholder="เลือกจังหวัด..."
-              styles={customStyles}
-            />
+          {/* กลุ่มวันที่และการเดินทาง */}
+          <div className="space-y-4 justify-center items-center mx-auto mr-20">
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                วันที่ออกเดินทาง
+              </label>
+              <DatePicker
+                selected={travelDates.start}
+                onChange={(date) =>
+                  setTravelDates({ ...travelDates, start: date })
+                }
+                placeholderText="วันไป"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-gray-200"
+                dateFormat="d MMMM yyyy"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                วันที่เดินทางกลับ
+              </label>
+              <DatePicker
+                selected={travelDates.end}
+                onChange={(date) =>
+                  setTravelDates({ ...travelDates, end: date })
+                }
+                placeholderText="วันกลับ"
+                className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-gray-200"
+                dateFormat="d MMMM yyyy"
+              />
+            </div>
           </div>
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-400 mb-2">
-              วันที่ออกเดินทาง
-            </label>
-            <DatePicker
-              selected={travelDates.start}
-              onChange={(date) => setTravelDates({ ...travelDates, start: date })}
-              placeholderText="วันไป"
-              className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
-              dateFormat="d MMMM yyyy"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-400 mb-2">
-              วันที่เดินทางกลับ
-            </label>
-            <DatePicker
-              selected={travelDates.end}
-              onChange={(date) => setTravelDates({ ...travelDates, end: date })}
-              placeholderText="วันกลับ"
-              className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
-              dateFormat="d MMMM yyyy"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-400 mb-2">
+        {/* กลุ่มวิธีเดินทาง, งบประมาณ */}
+        <div className="grid md:grid-cols-2 gap-2 justify-center items-center mr-20 ml-20">
+        
+          <div className="w-full ">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               วิธีเดินทาง
             </label>
             <Select
@@ -298,63 +333,195 @@ const PlannerForm = () => {
               styles={customStyles}
             />
           </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-2">
+          <div className="w-full  ">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               งบประมาณ (บาท)
             </label>
             <input
-              type="number"
+              type="text"
               value={budget}
-              onChange={(e) => setBudget(e.target.value)}
+              onChange={(e) => {
+                const formattedValue = formatNumber(e.target.value);
+                setBudget(formattedValue);
+              }}
               placeholder="ระบุงบประมาณ"
-              className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-gray-200"
             />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-xs font-medium text-gray-400 mb-2">
-              สถานที่/กิจกรรมพิเศษที่สนใจ
-            </label>
-            <textarea
-              value={specialRequest}
-              onChange={(e) => setSpecialRequest(e.target.value)}
-              placeholder="ระบุสถานที่หรือกิจกรรมพิเศษ"
-              className="w-full p-2 border border-gray-300 rounded text-sm min-h-[50px] focus:ring-2 focus:ring-gray-200"
-            />
-          </div>
-
-          <div className="flex flex-col items-end justify-center max-h-full mb-6">
-            <button
-              onClick={handleSubmit}
-              disabled={!isFormValid}
-              className={`btn ${
-                !isFormValid 
-                ? 'bg-gray-300 cursor-not-allowed' 
-                : 'bg-gray-500 hover:bg-gray-600'
-              } text-gray-50 transition-colors duration-200`}
-            >
-              Create Plan
-            </button>
-            <div className="text-sm text-gray-400 mt-2">
-              กรอกข้อมูลอย่างน้อย 3 ช่อง ({filledFieldsCount}/3)
-            </div>
           </div>
         </div>
 
-        {copiedText && (
-          <div className="bg-gray-100 p-4 rounded mt-4">
-            <label className="block text-sm font-medium text-gray-400 mb-2">
-              ข้อความที่คัดลอก
-            </label>
-            <div className="bg-white p-3 border border-gray-300 rounded text-sm">
-              {copiedText}
-            </div>
+        {/* รีเควสพิเศษ*/}
+        <div className=" justify-center items-center mx-auto mr-20 ml-20 ">
+          <label className="block text-sm font-medium text-gray-600 mb-2">
+            สถานที่/กิจกรรมพิเศษที่สนใจ
+          </label>
+          <textarea
+            value={specialRequest}
+            onChange={(e) => setSpecialRequest(e.target.value)}
+            placeholder="เพิ่มรายละเอียดพิเศษ (ถ้ามี)"
+            className="w-full p-2 border border-gray-300 rounded-md text-sm 
+              h-[50px] 
+              resize-none 
+              focus:ring-2 focus:ring-gray-200 
+              hover:border-gray-400 
+              transition-all duration-200 
+              placeholder-gray-400"
+          />
+          <div className="text-xs text-gray-500 mt-1 text-right">
+            {specialRequest.length}/200 ตัวอักษร
           </div>
-        )}
+        </div>
+
+        {/* ปุ่มสร้างแผน */}
+        <div className="flex flex-col items-center mt-6">
+          <button
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+            className={`px-6 py-3 rounded-lg transition-all duration-300 ${
+              !isFormValid
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-gray-600 hover:bg-gray-700 text-white hover:shadow-lg"
+            }`}
+          >
+            สร้างแผนการเดินทาง
+          </button>
+          <div className="text-sm text-gray-500 mt-2">
+            กรุณากรอกข้อมูลอย่างน้อย 3 ช่อง ({filledFieldsCount}/3)
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default PlannerForm;
+
+//----------  อันนี้ From แบบเก่าอะ-----------------//
+
+// <div className="bg-gray-50 max-h-screen flex items-center justify-center p-2">
+//   <div className="w-full max-w-6xl bg-white shadow-md rounded-lg p-4">
+//     <h2 className="text-2xl font-bold text-gray-500 mb-4 text-center">
+//       วางแผนทริปท่องเที่ยว
+//     </h2>
+
+//     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+//       <div className="mb-2">
+//         <label className="block text-sm font-medium text-gray-400 mb-2">
+//           สถานที่เริ่มต้น
+//         </label>
+//         <Select
+//           options={startLocations}
+//           onChange={setStartLocation}
+//           isSearchable
+//           placeholder="เลือกสถานที่เริ่มต้น..."
+//           styles={customStyles}
+//         />
+//       </div>
+
+//       <div>
+//         <label className="block text-sm font-medium text-gray-400 mb-2">
+//           จังหวัดที่ต้องการท่องเที่ยว(เลือกได้มากกว่า 1)
+//         </label>
+//         <Select
+//           options={provinces}
+//           onChange={setSelectedProvince}
+//           isSearchable
+//           isMulti
+//           placeholder="เลือกจังหวัด..."
+//           styles={customStyles}
+//         />
+//       </div>
+
+//       <div>
+//         <label className="block text-sm font-medium text-gray-400 mb-2">
+//           วันที่ออกเดินทาง
+//         </label>
+//         <DatePicker
+//           selected={travelDates.start}
+//           onChange={(date) => setTravelDates({ ...travelDates, start: date })}
+//           placeholderText="วันไป"
+//           className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
+//           dateFormat="d MMMM yyyy"
+//         />
+//       </div>
+
+//       <div>
+//         <label className="block text-sm font-medium text-gray-400 mb-2">
+//           วันที่เดินทางกลับ
+//         </label>
+//         <DatePicker
+//           selected={travelDates.end}
+//           onChange={(date) => setTravelDates({ ...travelDates, end: date })}
+//           placeholderText="วันกลับ"
+//           className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
+//           dateFormat="d MMMM yyyy"
+//         />
+//       </div>
+
+//       <div>
+//         <label className="block text-sm font-medium text-gray-400 mb-2">
+//           วิธีเดินทาง
+//         </label>
+//         <Select
+//           options={travelMethods}
+//           onChange={setTravelMethod}
+//           placeholder="วิธีเดินทาง..."
+//           styles={customStyles}
+//         />
+//       </div>
+
+//       <div className="mb-4">
+//         <label className="block text-sm font-medium text-gray-400 mb-2">
+//           งบประมาณ (บาท)
+//         </label>
+//         <input
+//           type="number"
+//           value={budget}
+//           onChange={(e) => setBudget(e.target.value)}
+//           placeholder="ระบุงบประมาณ"
+//           className="w-full p-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-gray-200"
+//         />
+//       </div>
+
+//       <div className="mb-4">
+//         <label className="block text-sm font-medium text-gray-400 mb-2 ">
+//           สถานที่/กิจกรรมพิเศษที่สนใจ
+//         </label>
+//         <textarea
+//           value={specialRequest}
+//           onChange={(e) => setSpecialRequest(e.target.value)}
+//           placeholder="ระบุสถานที่หรือกิจกรรมพิเศษ"
+//           className="w-full p-2 border border-gray-300 rounded text-sm min-h-[50px] focus:ring-2 focus:ring-gray-200"
+//         />
+//       </div>
+
+//       <div className="flex flex-col items-center justify-center max-h-full mb-6">
+//         <button
+//           onClick={handleSubmit}
+//           disabled={!isFormValid}
+//           className={`btn ${
+//             !isFormValid
+//             ? 'bg-gray-300 cursor-not-allowed'
+//             : 'bg-gray-500 hover:bg-gray-600'
+//           } text-gray-50 transition-colors duration-200`}
+//         >
+//           Create Plan
+//         </button>
+//         <div className="text-xs text-gray-400 mt-2 justify-end">
+//           กรอกข้อมูลอย่างน้อย 3 ช่อง ({filledFieldsCount}/3)
+//         </div>
+//       </div>
+//     </div>
+
+//     {copiedText && (
+//       <div className="bg-gray-100 p-4 rounded mt-4">
+//         <label className="block text-sm font-medium text-gray-400 mb-2">
+//           ข้อความที่คัดลอก
+//         </label>
+//         <div className="bg-white p-3 border border-gray-300 rounded text-sm">
+//           {copiedText}
+//         </div>
+//       </div>
+//     )}
+//   </div>
+// </div>

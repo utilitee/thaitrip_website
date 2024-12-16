@@ -1,8 +1,6 @@
 // นำเข้าไลบรารี React และ Icon ที่จำเป็น
 import React from "react";
 
-
-
 // นำเข้า Navbar compo section
 import Navbar from "../components/Navbar/Navbar";
 import PlannerForm from "../components/Genprompt/PlannerForm";
@@ -12,7 +10,6 @@ import ScrollToTopButton from "../components/Button/ScrollToTopButton";
 import artworkIntro from "../assets/images/artwork/Aatwork Intro.png";
 import hey from "../assets/images/artwork/hey.png";
 import AWtest from "../assets/images/artwork/AWtest (3).png";
-
 
 // นำเข้า Icon
 import {
@@ -40,8 +37,6 @@ import {
 // ส่วนนี้เป็น ่่javaScript
 
 const Guidepage = () => {
-  
-
   // กำหนดขั้นตอนการใช้งานเว็บไซต์เป็นอาร์เรย์
   // แต่ละ Object แทนขั้นตอนหนึ่งขั้นตอน ประกอบด้วย ไอคอน, หัวข้อ, คำอธิบาย และรายละเอียดเพิ่มเติม
 
@@ -181,24 +176,25 @@ const Guidepage = () => {
           </p>
 
           {/* ส่วน header */}
-        </header >
+        </header>
 
         {/*////////////////////////////////////////////////////////////////////// */}
         {/* ส่วนของ section ต่าง ๆ */}
+        {/* Section สำหรับ Genprompt */}
+        <section
+          id="createprompt"
+          className="bg-white shadow-md rounded-xl p-8 mb-12"
+        >
+          <PlannerForm />
+        </section>
 
-        
-        
         {/* section Introduce Artwork */}
         <section className="bg-white shadow-md rounded-xl p-8 mb-12">
           {/* กริดสำหรับแสดง ภาพ */}
           <div className="grid md:grid-cols-1">
             {/* ภาพที่ 1 */}
             <div className="overflow-hidden rounded-lg ">
-              <img
-                src={AWtest}
-                alt="ArtWorkIntro"
-                className="w-full h-auto"
-              />
+              <img src={AWtest} alt="ArtWorkIntro" className="w-full h-auto" />
               <div className="p-4">
                 <h3 className="text-lg font-medium text-gray-800"></h3>
                 <p className="text-gray-600"></p>
@@ -207,19 +203,8 @@ const Guidepage = () => {
           </div>
         </section>
 
-        {/* Section สำหรับ Genprompt */}
-        <section id="createprompt"
-          className="bg-white shadow-md rounded-xl p-8 mb-12"
-        >
-          <h2 className="text-xl font-bold text-center mb-4">
-            สร้าง Prompt สำหรับ AI
-          </h2>
-          <PlannerForm />
-        </section>
-
         {/* section หรือพื้นทีี่ของ เกี่ยวกับ  (พื้นหลังขาว เงา มุมมน) */}
-        <section id="about" 
-        className="bg-white shadow-md rounded-xl p-8 mb-12">
+        <section id="about" className="bg-white shadow-md rounded-xl p-8 mb-12">
           {/* หัวข้อเกี่ยวกับ */}
           <h2 className="text-3xl text-center font-semibold text-gray-800 mb-6">
             เกี่ยวกับ Thaitrip
@@ -263,7 +248,8 @@ const Guidepage = () => {
         {/*////////////////////////////////////////////////////////////////////// */}
 
         {/* section หรือพื้นที่ ของวิธีการใช้งาน */}
-        <section id="howtouse"
+        <section
+          id="howtouse"
           className="bg-white shadow-md rounded-xl p-8 mb-12"
         >
           {/* หัวข้อวิธีการใช้งาน */}
@@ -313,7 +299,8 @@ const Guidepage = () => {
         {/*////////////////////////////////////////////////////////////////////// */}
 
         {/* section หรือพื้นที่ ทริกเด็ดในการใช้งาน */}
-        <section id="tips"
+        <section
+          id="tips"
           className="bg-white p-8 overflow-hidden rounded-lg shadow-lg mb-12"
         >
           {/* หัวข้อวิธีการใช้งาน */}
@@ -379,8 +366,7 @@ const Guidepage = () => {
         {/*////////////////////////////////////////////////////////////////////// */}
 
         {/* Section อื่น ๆ เพิ่มเติม เผื่อมี */}
-        <ScrollToTopButton/>
-
+        <ScrollToTopButton />
       </div>
     </>
   );
