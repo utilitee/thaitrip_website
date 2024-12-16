@@ -250,7 +250,7 @@ const PlannerForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[url('./src/assets/images/artwork/Thailavd2.jpg')] bg-cover bg-center">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[url('/images/Thailavd2.jpg')] bg-cover bg-center">
       <div className="w-full max-w-4xl bg-white/70 shadow-lg rounded-xl p-6 space-y-6 ">
         <h2 className="text-3xl font-bold text-gray-700 text-center mb-6">
           วางแผนทริปท่องเที่ยว
