@@ -20,7 +20,7 @@ function Imageslider() {
       >
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/src/assets/imageforslide/thailand-2723974_1280.jpg"
+            src="/imageforslide/thailand-2723974_1280.jpg"
             alt="Image 1"
             className="w-full  h-68 object-cover rounded-lg"
           />
@@ -28,7 +28,7 @@ function Imageslider() {
 
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/src/assets/images/artwork/pexels-egonshotsphotos-2240361.jpg"
+            src=" /imageforslide/pexels-egonshotsphotos-2240361.jpg"
             alt="Image 1"
             className="w-full h-68 object-cover rounded-lg"
           />
@@ -36,7 +36,7 @@ function Imageslider() {
 
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/src/assets/imageforslide/bridge-praram8.jpg"
+            src="/imageforslide/bridge-praram8.jpg"
             alt="Image 1"
             className="w-full  h-68 object-cover rounded-lg"
           />
@@ -44,14 +44,14 @@ function Imageslider() {
 
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/src/assets/images/artwork/pexels-freestockpro-1004366.jpg"
+            src="/imageforslide/pexels-freestockpro-1004366.jpg"
             alt="Image 2"
             className="w-full h-68 object-cover rounded-lg"
           />
         </SwiperSlide>
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/src/assets/imageforslide/chiang-mai.jpg"
+            src="/imageforslide/chiang-mai.jpg"
             alt="Image 1"
             className="w-full  h-68 object-cover rounded-lg"
           />
@@ -59,7 +59,7 @@ function Imageslider() {
 
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/src/assets/images/artwork/pexels-mikegles-29589429.jpg"
+            src="/imageforslide/pexels-mikegles-29589429.jpg"
             alt="Image 3"
             className="w-full h-68 object-cover rounded-lg"
           />
@@ -67,7 +67,7 @@ function Imageslider() {
 
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/src/assets/imageforslide/bangkok-2jpg.jpg"
+            src="/imageforslide/bangkok-2jpg.jpg"
             alt="Image 4"
             className="w-full h-68 object-cover rounded-lg"
           />
