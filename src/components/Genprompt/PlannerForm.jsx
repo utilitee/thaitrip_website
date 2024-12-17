@@ -161,17 +161,35 @@ const PlannerForm = () => {
     const countFilledFields = () => {
       let count = 0;
 
-      // Count filled fields
-      if (selectedProvince?.length > 0) count++;
-      if (startLocation) count++;
-      if (travelDates.start) count++;
-      if (travelDates.end) count++;
-      if (travelMethod) count++;
-      if (budget.trim()) count++;
-      if (specialRequest.trim()) count++;
+       // ตรวจสอบว่า selectedProvince และ startLocation ถูกกรอกหรือไม่
+    const isProvinceValid = selectedProvince?.length > 0; // ต้องเลือกจังหวัดอย่างน้อย 1
+    const isStartLocationValid = !!startLocation; // ต้องกรอกจุดเริ่มต้น
 
-      setFilledFieldsCount(count);
-      setIsFormValid(count >= 3);
+      // // Count filled fields
+      // if (selectedProvince?.length > 0) count++;
+      // if (startLocation) count++;
+      // if (travelDates.start) count++;
+      // if (travelDates.end) count++;
+      // if (travelMethod) count++;
+      // if (budget.trim()) count++;
+      // if (specialRequest.trim()) count++;
+
+      // setFilledFieldsCount(count);
+      // setIsFormValid(count >= 3);
+
+      // Count filled fields
+    if (isProvinceValid) count++;
+    if (isStartLocationValid) count++;
+    if (travelDates.start) count++;
+    if (travelDates.end) count++;
+    if (travelMethod) count++;
+    if (budget.trim()) count++;
+    if (specialRequest.trim()) count++;
+
+    setFilledFieldsCount(count);
+     // ต้องกรอก selectedProvince และ startLocation และกรอกข้อมูลช่องอื่นรวมกันให้ครบ 3 ช่องขึ้นไป
+     setIsFormValid(isProvinceValid && isStartLocationValid && count >= 3);
+    
     };
 
     // countFilledFields นับจำนวนช่องที่ถูกกรอก ถ้ากรอกครบ 3 ช่องขึ้นไป จะทำให้ isFormValid เป็น true
@@ -185,9 +203,27 @@ const PlannerForm = () => {
     specialRequest,
   ]);
 
+
   // ตรวจสอบ isFormValid - ถ้ายังกรอกไม่ครบ 3 ช่องจะไม่ทำอะไร
   const handleSubmit = () => {
-    if (!isFormValid) return;
+
+    // ตรวจสอบว่าผู้ใช้กรอก selectedProvince หรือยัง
+    if (!selectedProvince || selectedProvince.length === 0) {
+      alert("กรุณาเลือกจังหวัดปลายทาง");
+      return;
+    }
+  
+    // ตรวจสอบว่าผู้ใช้กรอก startLocation หรือยัง
+    if (!startLocation) {
+      alert("กรุณาเลือกจังหวัดเริ่มต้น");
+      return;
+    }
+  
+    // ตรวจสอบว่าฟอร์มครบตามเงื่อนไข (ช่องที่กรอกครบ 3 ช่องขึ้นไป)
+    if (!isFormValid) {
+      alert("กรุณากรอกข้อมูลให้ครบ 3 ช่องขึ้นไป");
+      return;
+    }
 
     //สร้าง prompt - โดยรวบรวมข้อมูลจาก state มาเรียบเรียง
     const selectedProvinceNames =
@@ -377,7 +413,7 @@ const PlannerForm = () => {
         <div className="flex flex-col items-center mt-4">
           <button
             onClick={handleSubmit}
-            disabled={!isFormValid}
+            
             className={`w-full md:w-auto px-6 py-3 rounded-lg transition-all duration-300 ${
               !isFormValid
                 ? "bg-gray-300 cursor-not-allowed"
