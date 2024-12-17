@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar/Navbar";
 import PlannerForm from "../components/Genprompt/PlannerForm";
 import ScrollToTopButton from "../components/Button/ScrollToTopButton";
 import ChatButton from "../components/Button/Chatpage";
+import Imageslider from '../components/Imageslider/Imageslider';
+
 
 // นำเข้ารูปภาพ AW ต่าง ๆ
 import artworkIntro from "../assets/images/artwork/Aatwork Intro.png";
@@ -183,6 +185,9 @@ const Guidepage = () => {
 
         {/*////////////////////////////////////////////////////////////////////// */}
         {/* ส่วนของ section ต่าง ๆ */}
+
+          
+        <Imageslider />
 
         {/* section Introduce Artwork */}
 

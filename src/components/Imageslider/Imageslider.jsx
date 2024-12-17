@@ -1,33 +1,80 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css'; 
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules"; // เพิ่มบรรทัดนี้
+import "swiper/swiper-bundle.css";
+import "swiper/css/pagination"; // เพิ่มบรรทัดนี้
+import "swiper/css/autoplay"; // เพิ่มบรรทัดนี้
 
 function Imageslider() {
   return (
     <section className="bg-white shadow-md rounded-l p-8 mb-8">
       <Swiper
-        spaceBetween={10}  // ระยะห่าง แต่ละภาพ
-        slidesPerView={1}  // จำนวนภาพ แต่ละหน้า
-        loop={true}  // เลื่อนวนรอบ
-        autoplay={{ delay: 3000 , disableOnInteraction: false}}  // เล่นอัตโนมัติ
-        pagination={{ clickable: true }}  // แสดงปุ่ม pagination ที่คลิกได้
-        navigation={true}  // ปุ่ม เลื่อนภาพซ้ายขวา
+        modules={[Autoplay, Pagination]}
+        spaceBetween={10} // ระยะห่างระหว่างภาพ
+        slidesPerView={1} // จำนวนภาพที่แสดงในแต่ละหน้าจอ
+        loop={true} // เลื่อนวนรอบ
+        speed={1500} // เพิ่มความ smooth ของการเลื่อน
+        autoplay={{ delay: 3000, disableOnInteraction: false }} // เลื่อนอัตโนมัติทุก 3 วินาที
+        pagination={{ clickable: true }} // ปุ่ม pagination
+        effect="slide" // เอฟเฟกต์การเลื่อนแบบ smooth
       >
-        <SwiperSlide>
-          <img src="/src/assets/images/artwork/hey.png" alt="Image 1" className="w-full h-auto rounded-lg" />
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/src/assets/imageforslide/thailand-2723974_1280.jpg"
+            alt="Image 1"
+            className="w-full  h-68 object-cover rounded-lg"
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="/src/assets/images/artwork/artwork3.png" alt="Image 2" className="w-full h-auto rounded-lg" />
+
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/src/assets/images/artwork/pexels-egonshotsphotos-2240361.jpg"
+            alt="Image 1"
+            className="w-full h-68 object-cover rounded-lg"
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="/src/assets/images/artwork/artwork1.jpg" alt="Image 3" className="w-full h-auto rounded-lg" />
+
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/src/assets/imageforslide/bridge-praram8.jpg"
+            alt="Image 1"
+            className="w-full  h-68 object-cover rounded-lg"
+          />
         </SwiperSlide>
-        
+
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/src/assets/images/artwork/pexels-freestockpro-1004366.jpg"
+            alt="Image 2"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/src/assets/imageforslide/chiang-mai.jpg"
+            alt="Image 1"
+            className="w-full  h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/src/assets/images/artwork/pexels-mikegles-29589429.jpg"
+            alt="Image 3"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/src/assets/imageforslide/bangkok-2jpg.jpg"
+            alt="Image 4"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
       </Swiper>
     </section>
   );
 }
 
 export default Imageslider;
-
-//----------  ยังไม่ได้เรียกใช้ ยังติดอยู่ ------------ //
