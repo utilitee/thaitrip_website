@@ -137,6 +137,7 @@ const customStyles = {
   }),
   placeholder: (base) => ({
     ...base,
+    paddingLeft: '5px', 
     color: "#9CA3AF",
     fontSize: "0.875rem",
   }),
