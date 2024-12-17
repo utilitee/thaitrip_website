@@ -299,6 +299,7 @@ const Guidepage = () => {
 
         {/* section หรือพื้นที่ ทริกเด็ดในการใช้งาน */}
         <section
+        
           id="tips"
           className="bg-white p-8 overflow-hidden rounded-lg shadow-lg mb-12"
         >
@@ -348,14 +349,13 @@ const Guidepage = () => {
                 ช่วยแปลหรือแนะนำคำง่าย ๆ"
               </p>
             </div>
-          </div>
         </section>
 
         {/*////////////////////////////////////////////////////////////////////// */}
 
         {/* Section อื่น ๆ เพิ่มเติม เผื่อมี */}
         <ScrollToTopButton />
-      </div>
+      </div>     
     </>
   );
 };
