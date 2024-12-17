@@ -6,8 +6,7 @@ import Navbar from "../components/Navbar/Navbar";
 import PlannerForm from "../components/Genprompt/PlannerForm";
 import ScrollToTopButton from "../components/Button/ScrollToTopButton";
 import ChatButton from "../components/Button/Chatpage";
-import Imageslider from '../components/Imageslider/Imageslider';
-
+import Imageslider from "../components/Imageslider/Imageslider";
 
 // นำเข้ารูปภาพ AW ต่าง ๆ
 import artworkIntro from "../assets/images/artwork/Aatwork Intro.png";
@@ -168,13 +167,15 @@ const Guidepage = () => {
         {/* ส่วนหัวของเว็บไซต์ จัดกึ่งกลาง มีระยะห่างด้านล่าง */}
         <header className="text-center mb-4 flex flex-col items-center">
           {/* ชื่อเว็บไซต์ ขนาดใหญ่ สีเทาเข้ม */}
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            Guide ThaiTrip
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">
+            <span className="text-gray-800">Guide</span>{" "}
+            <span className="text-red-700">ThaiTrip</span>
           </h1>
 
           {/* คำบรรยายใต้ชื่อ สีเทาอ่อน */}
           <p className="text-xl text-gray-400">
-            แพลนทริปอัจฉริยะ ครอบคลุมทุกมุมประเทศไทย
+          <span className="text-gray-400">แพลนทริปอัจฉริยะ ครอบคลุมทุกมุมประเทศไทย </span>{" "}
+          <span className="text-gray-400 text-lg">เที่ยวง่าย ไม่สะดุด ครอบคลุมทุกที่ หมดห่วงเรื่องแพลน</span>
           </p>
 
           <div className="flex justify-center">
@@ -186,7 +187,6 @@ const Guidepage = () => {
         {/*////////////////////////////////////////////////////////////////////// */}
         {/* ส่วนของ section ต่าง ๆ */}
 
-          
         <Imageslider />
 
         {/* section Introduce Artwork */}
