@@ -352,7 +352,7 @@ const PlannerForm = () => {
                 setBudget(formattedValue);
               }}
               placeholder="ระบุงบประมาณ"
-              className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-gray-200"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-gray-200 bg-white"
             />
           </div>
         </div>

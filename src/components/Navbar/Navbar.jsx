@@ -30,14 +30,14 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="navbar bg-base-100 sticky top-0 z-10 px-4">
+    <div className="navbar sticky top-0 z-10 px-4 bg-white">
       {/* Logo Section */}
       <div className="flex-1">
         <button 
           onClick={handleThaitripClick}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="btn btn-ghost text-xl flex items-center space-x-2"
+          className="btn btn-ghost text-xl flex items-center space-x-2 text-gray-500"
         >
           <img
             src={isHovered ? "/images/Logo/HoverLogo.png" : "/images/Logo/Logo.png"}
@@ -54,7 +54,7 @@ export default function Navbar() {
           <button 
             key={link.id}
             onClick={() => scrollToSection(link.id)} 
-            className="btn btn-ghost text-l hover:bg-gray-100 hover:text-red-700 transition-all duration-300"
+            className="btn btn-ghost text-l text-gray-500 hover:bg-gray-100 hover:text-red-700 transition-all duration-300"
           >
             {link.title}
           </button>
@@ -79,7 +79,7 @@ export default function Navbar() {
               <button 
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="btn btn-ghost text-l hover:bg-gray-100 hover:text-red-700 transition-all duration-300 justify-start"
+                className="btn btn-ghost text-l text-gray-500 hover:bg-gray-100 hover:text-red-700 transition-all duration-300 justify-start"
               >
                 {link.title}
               </button>

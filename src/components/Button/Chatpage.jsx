@@ -17,11 +17,12 @@ const ChatButton = () => {
       onClick={handleThaitripClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="btn text-xl flex items-center space-x-2 shadow-none"
+      className="btn text-xl flex items-center space-x-2 shadow-none border-none "
       style={{
-        backgroundImage: isHovered
-          ? "url('/images/Logo/HoverBackground.png')" // ภาพพื้นหลังเมื่อ hover
-          : "url('/images/Logo/Background.png')", // ภาพพื้นหลังปกติ
+        // backgroundImage: isHovered
+        //   ? "url('/images/Logo/HoverBackground.png')" // ภาพพื้นหลังเมื่อ hover
+        //   : "url('/images/Logo/Background.png')", // ภาพพื้นหลังปกติ
+        backgroundColor: isHovered ? "#EEEEEE" : "#F8FAFC", 
         backgroundSize: "cover", // ปรับขนาดภาพพื้นหลังให้เต็มปุ่ม
         backgroundPosition: "center", // จัดตำแหน่งภาพพื้นหลังให้อยู่ตรงกลาง
       }}
