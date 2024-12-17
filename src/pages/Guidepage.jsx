@@ -5,6 +5,7 @@ import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import PlannerForm from "../components/Genprompt/PlannerForm";
 import ScrollToTopButton from "../components/Button/ScrollToTopButton";
+import ChatButton from "../components/Button/Chatpage";
 
 // นำเข้ารูปภาพ AW ต่าง ๆ
 import artworkIntro from "../assets/images/artwork/Aatwork Intro.png";
@@ -163,7 +164,7 @@ const Guidepage = () => {
       {/* พื้นที่ของ page ทั้งหมด หรือคอนเทนเนอร์หลัก ใช้พื้นหลังสีเทา และตัวอักษรสีเทาเข้ม */}
       <div className="min-h-screen bg-gray-100 text-gray-900 p-6">
         {/* ส่วนหัวของเว็บไซต์ จัดกึ่งกลาง มีระยะห่างด้านล่าง */}
-        <header className="text-center mb-4">
+        <header className="text-center mb-4 flex flex-col items-center">
           {/* ชื่อเว็บไซต์ ขนาดใหญ่ สีเทาเข้ม */}
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
             Guide ThaiTrip
@@ -174,18 +175,14 @@ const Guidepage = () => {
             แพลนทริปอัจฉริยะ ครอบคลุมทุกมุมประเทศไทย
           </p>
 
+          <div className="flex justify-center">
+            <ChatButton />
+          </div>
           {/* ส่วน header */}
         </header>
 
         {/*////////////////////////////////////////////////////////////////////// */}
         {/* ส่วนของ section ต่าง ๆ */}
-        {/* Section สำหรับ Genprompt */}
-        <section
-          id="createprompt"
-          className="bg-white shadow-md rounded-xl p-8 mb-12"
-        >
-          <PlannerForm />
-        </section>
 
         {/* section Introduce Artwork */}
 
@@ -203,7 +200,14 @@ const Guidepage = () => {
           </div>
         </section>
 
-        
+        {/* Section สำหรับ Genprompt */}
+        <section
+          id="createprompt"
+          className="bg-white shadow-md rounded-xl p-8 mb-12"
+        >
+          <PlannerForm />
+        </section>
+
         {/* section หรือพื้นทีี่ของ เกี่ยวกับ  (พื้นหลังขาว เงา มุมมน) */}
         <section id="about" className="bg-white shadow-md rounded-xl p-8 mb-12">
           {/* หัวข้อเกี่ยวกับ */}

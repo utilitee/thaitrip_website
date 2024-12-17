@@ -44,7 +44,7 @@ export default function Navbar() {
             alt="Thaitrip Logo"
             className="h-10 w-10 transition-transform duration-300 hover:scale-110"
           />
-          <span className="hover:text-blue-600 transition-colors duration-300">ThaiTrip</span>
+          <span className="hover:text-red-700 transition-colors duration-300">ThaiTrip</span>
         </button>
       </div>
 
@@ -54,7 +54,7 @@ export default function Navbar() {
           <button 
             key={link.id}
             onClick={() => scrollToSection(link.id)} 
-            className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300"
+            className="btn btn-ghost text-l hover:bg-gray-100 hover:text-red-700 transition-all duration-300"
           >
             {link.title}
           </button>
@@ -79,7 +79,7 @@ export default function Navbar() {
               <button 
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="btn btn-ghost text-l hover:bg-gray-100 hover:text-blue-600 transition-all duration-300 justify-start"
+                className="btn btn-ghost text-l hover:bg-gray-100 hover:text-red-700 transition-all duration-300 justify-start"
               >
                 {link.title}
               </button>
