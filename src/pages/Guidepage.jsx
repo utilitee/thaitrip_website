@@ -188,20 +188,22 @@ const Guidepage = () => {
         </section>
 
         {/* section Introduce Artwork */}
-        <section className="bg-white shadow-md rounded-xl p-8 mb-12">
+
+        <section className="bg-white shadow-md rounded-xl p-0 mb-6 md:mb-12">
           {/* กริดสำหรับแสดง ภาพ */}
-          <div className="grid md:grid-cols-1">
+          <div className="grid md:grid-cols-1 gap-0">
             {/* ภาพที่ 1 */}
-            <div className="overflow-hidden rounded-lg ">
-              <img src={AWtest} alt="ArtWorkIntro" className="w-full h-auto" />
-              <div className="p-4">
-                <h3 className="text-lg font-medium text-gray-800"></h3>
-                <p className="text-gray-600"></p>
-              </div>
+            <div className="overflow-hidden rounded-lg">
+              <img
+                src={AWtest}
+                alt="ArtWorkIntro"
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
         </section>
 
+        
         {/* section หรือพื้นทีี่ของ เกี่ยวกับ  (พื้นหลังขาว เงา มุมมน) */}
         <section id="about" className="bg-white shadow-md rounded-xl p-8 mb-12">
           {/* หัวข้อเกี่ยวกับ */}
@@ -299,7 +301,6 @@ const Guidepage = () => {
 
         {/* section หรือพื้นที่ ทริกเด็ดในการใช้งาน */}
         <section
-        
           id="tips"
           className="bg-white p-8 overflow-hidden rounded-lg shadow-lg mb-12"
         >
@@ -309,53 +310,52 @@ const Guidepage = () => {
           </h2>
 
           {/* เรียงกริดขั้นตอนการใช้งาน */}
-            <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-              <h3 className="text-lg font-medium text-gray-800 text-center">
-                🔥 ขอคำแนะนำเฉพาะเจาะจง
-              </h3>
-              <p className="text-gray-600 text-center">
-                อยากเที่ยวแบบไหนดี? บอกได้เลย เช่น
-                "อยากได้ที่เที่ยวที่คนไม่พลุกพล่าน" หรือ "หากิจกรรมที่เด็ก ๆ
-                จะสนุกด้วยได้"
-              </p>
-            </div>
+          <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
+            <h3 className="text-lg font-medium text-gray-800 text-center">
+              🔥 ขอคำแนะนำเฉพาะเจาะจง
+            </h3>
+            <p className="text-gray-600 text-center">
+              อยากเที่ยวแบบไหนดี? บอกได้เลย เช่น
+              "อยากได้ที่เที่ยวที่คนไม่พลุกพล่าน" หรือ "หากิจกรรมที่เด็ก ๆ
+              จะสนุกด้วยได้"
+            </p>
+          </div>
 
-            <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-              <h3 className="text-lg font-medium text-gray-800 text-center">
-                🔥 อัปเดตข้อมูลตลอดเวลา
-              </h3>
-              <p className="text-gray-600 text-center">
-                ก่อนออกเดินทางจริง ให้เช็คสภาพอากาศกับ AI อีกครั้ง
-                เพื่อความชัวร์"
-              </p>
-            </div>
+          <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
+            <h3 className="text-lg font-medium text-gray-800 text-center">
+              🔥 อัปเดตข้อมูลตลอดเวลา
+            </h3>
+            <p className="text-gray-600 text-center">
+              ก่อนออกเดินทางจริง ให้เช็คสภาพอากาศกับ AI อีกครั้ง เพื่อความชัวร์"
+            </p>
+          </div>
 
-            <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-              <h3 className="text-lg font-medium text-gray-800 text-center">
-                🔥 ตั้งงบประมาณอย่างชัดเจน
-              </h3>
-              <p className="text-gray-600 text-center">
-                บอก AI ไปเลยว่าคุณมีงบเท่าไหร่ AI
-                จะช่วยวางแผนให้เหมาะสมและคุ้มค่า"
-              </p>
-            </div>
+          <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
+            <h3 className="text-lg font-medium text-gray-800 text-center">
+              🔥 ตั้งงบประมาณอย่างชัดเจน
+            </h3>
+            <p className="text-gray-600 text-center">
+              บอก AI ไปเลยว่าคุณมีงบเท่าไหร่ AI
+              จะช่วยวางแผนให้เหมาะสมและคุ้มค่า"
+            </p>
+          </div>
 
-            <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-              <h3 className="text-lg font-medium text-gray-800 text-center">
-                🔥 ขอคำแนะนำทางภาษา
-              </h3>
-              <p className="text-gray-600 text-center">
-                ถ้าเจอคนในพื้นที่และอยากคุย แต่ไม่รู้จะพูดว่าอะไร ลองให้ AI
-                ช่วยแปลหรือแนะนำคำง่าย ๆ"
-              </p>
-            </div>
+          <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
+            <h3 className="text-lg font-medium text-gray-800 text-center">
+              🔥 ขอคำแนะนำทางภาษา
+            </h3>
+            <p className="text-gray-600 text-center">
+              ถ้าเจอคนในพื้นที่และอยากคุย แต่ไม่รู้จะพูดว่าอะไร ลองให้ AI
+              ช่วยแปลหรือแนะนำคำง่าย ๆ"
+            </p>
+          </div>
         </section>
 
         {/*////////////////////////////////////////////////////////////////////// */}
 
         {/* Section อื่น ๆ เพิ่มเติม เผื่อมี */}
         <ScrollToTopButton />
-      </div>     
+      </div>
     </>
   );
 };
