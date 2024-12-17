@@ -8,7 +8,7 @@ html {
 
 /* Add this to your CSS file */
 .react-datepicker__input-container input,
-input[type="number"],
+input[type="text"],
 textarea {
   background-color: white !important;
 }
