@@ -174,8 +174,12 @@ const Guidepage = () => {
 
           {/* คำบรรยายใต้ชื่อ สีเทาอ่อน */}
           <p className="text-xl text-gray-400">
-          <span className="text-gray-400">แพลนทริปอัจฉริยะ ครอบคลุมทุกมุมประเทศไทย </span>{" "}
-          <span className="text-gray-400 text-lg">เที่ยวง่าย ไม่สะดุด ครอบคลุมทุกที่ หมดห่วงเรื่องแพลน</span>
+            <span className="text-gray-400">
+              แพลนทริปอัจฉริยะ ครอบคลุมทุกมุมประเทศไทย{" "}
+            </span>{" "}
+            <span className="text-gray-400 text-lg">
+              เที่ยวง่าย ไม่สะดุด ครอบคลุมทุกที่ หมดห่วงเรื่องแพลน
+            </span>
           </p>
 
           <div className="flex justify-center">
@@ -190,10 +194,12 @@ const Guidepage = () => {
         <Imageslider />
 
         {/* section Introduce Artwork */}
-
         <section className="bg-white shadow-md rounded-xl p-0 mb-6 md:mb-12">
           {/* กริดสำหรับแสดง ภาพ */}
           <div className="grid md:grid-cols-1 gap-0">
+            <h1 className="text-3xl font-bold text-center mb-4 className= text-gray-600">
+              Wanna explore Thailand ?
+            </h1>
             {/* ภาพที่ 1 */}
             <div className="overflow-hidden rounded-lg">
               <img
@@ -205,7 +211,7 @@ const Guidepage = () => {
           </div>
         </section>
 
-        {/* Section สำหรับ Genprompt */}
+        {/* Section Genprompt */}
         <section
           id="createprompt"
           className="bg-white shadow-md rounded-xl p-8 mb-12"
@@ -213,7 +219,7 @@ const Guidepage = () => {
           <PlannerForm />
         </section>
 
-        {/* section หรือพื้นทีี่ของ เกี่ยวกับ  (พื้นหลังขาว เงา มุมมน) */}
+        {/* section  เกี่ยวกับ  (พื้นหลังขาว เงา มุมมน) */}
         <section id="about" className="bg-white shadow-md rounded-xl p-8 mb-12">
           {/* หัวข้อเกี่ยวกับ */}
           <h2 className="text-3xl text-center font-semibold text-gray-800 mb-6">
@@ -257,7 +263,7 @@ const Guidepage = () => {
 
         {/*////////////////////////////////////////////////////////////////////// */}
 
-        {/* section หรือพื้นที่ ของวิธีการใช้งาน */}
+        {/* sectionของวิธีการใช้งาน */}
         <section
           id="howtouse"
           className="bg-white shadow-md rounded-xl p-8 mb-12"
@@ -308,7 +314,7 @@ const Guidepage = () => {
 
         {/*////////////////////////////////////////////////////////////////////// */}
 
-        {/* section หรือพื้นที่ ทริกเด็ดในการใช้งาน */}
+        {/* section ทริกเด็ดในการใช้งาน */}
         <section
           id="tips"
           className="bg-white p-8 overflow-hidden rounded-lg shadow-lg mb-12"
@@ -319,6 +325,7 @@ const Guidepage = () => {
           </h2>
 
           {/* เรียงกริดขั้นตอนการใช้งาน */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
             <h3 className="text-lg font-medium text-gray-800 text-center">
               🔥 ขอคำแนะนำเฉพาะเจาะจง
@@ -357,6 +364,7 @@ const Guidepage = () => {
               ถ้าเจอคนในพื้นที่และอยากคุย แต่ไม่รู้จะพูดว่าอะไร ลองให้ AI
               ช่วยแปลหรือแนะนำคำง่าย ๆ"
             </p>
+          </div>
           </div>
         </section>
 
