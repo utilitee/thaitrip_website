@@ -293,7 +293,7 @@ const PlannerForm = () => {
     bg-[url('/images/Thailavd2.jpg')] bg-cover bg-center md:bg-fixed"
     >
       <div className="w-full max-w-4xl bg-white/70 shadow-lg rounded-xl p-6 space-y-6">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-700 text-center mb-4 md:mb-6">
+        <h2 className="text-l sm:text-xl font-bold text-gray-700 text-center mb-4 md:mb-6">
           วางแผนทริปท่องเที่ยว
         </h2>
 
@@ -302,7 +302,7 @@ const PlannerForm = () => {
           {/* กลุ่มสถานที่เริ่มต้นและจังหวัด */}
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-600 mb-2">
                 สถานที่เริ่มต้น
               </label>
               <Select
@@ -315,7 +315,7 @@ const PlannerForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-600 mb-2">
                 จังหวัดที่ต้องการท่องเที่ยว
               </label>
               <Select
@@ -332,7 +332,7 @@ const PlannerForm = () => {
           {/* กลุ่มวันที่ */}
           <div className="space-y-4">
             <div className="flex flex-col">
-              <label className="block text-sm font-medium text-gray-600 mb-2">
+              <label className="block text-xs sm:text-sm  font-medium text-gray-600 mb-2">
                 วันที่ออกเดินทาง
               </label>
               <DatePicker
@@ -347,7 +347,7 @@ const PlannerForm = () => {
             </div>
 
             <div className="flex flex-col">
-              <label className="block text-sm font-medium text-gray-600 mb-2">
+              <label className="block text-xs sm:text-sm  font-medium text-gray-600 mb-2">
                 วันที่เดินทางกลับ
               </label>
               <DatePicker
@@ -366,7 +366,7 @@ const PlannerForm = () => {
         {/* Grid วิธีเดินทางและงบประมาณ */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-8">
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="block text-xs sm:text-sm  font-medium text-gray-600 mb-2">
               วิธีเดินทาง
             </label>
             <Select
@@ -378,7 +378,7 @@ const PlannerForm = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="block text-xs sm:text-sm  font-medium text-gray-600 mb-2">
               งบประมาณ (บาท)
             </label>
             <input
@@ -396,7 +396,7 @@ const PlannerForm = () => {
 
         {/* Grid รีเควสพิเศษ */}
         <div className="px-4 md:px-8">
-          <label className="block text-sm font-medium text-gray-600 mb-2">
+          <label className="block text-xs sm:text-sm  font-medium text-gray-600 mb-2">
             สถานที่/กิจกรรมพิเศษที่สนใจ
           </label>
           <textarea
@@ -415,7 +415,7 @@ const PlannerForm = () => {
           <button
             onClick={handleSubmit}
             
-            className={`w-full md:w-auto px-6 py-3 rounded-lg transition-all duration-300 ${
+            className={`w-full text-sm sm:text-base md:w-auto px-6 py-3 rounded-lg transition-all duration-300 ${
               !isFormValid
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-gray-600 hover:bg-gray-700 text-white hover:shadow-lg"

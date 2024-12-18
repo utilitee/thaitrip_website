@@ -167,17 +167,17 @@ const Guidepage = () => {
         {/* ส่วนหัวของเว็บไซต์ จัดกึ่งกลาง มีระยะห่างด้านล่าง */}
         <header className="text-center mb-4 flex flex-col items-center">
           {/* ชื่อเว็บไซต์ ขนาดใหญ่ สีเทาเข้ม */}
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">
+          <h1 className="text-xl sm:text-3xl font-bold text-gray-800 mb-4">
             <span className="text-gray-800">Guide</span>{" "}
             <span className="text-red-700">ThaiTrip</span>
           </h1>
 
           {/* คำบรรยายใต้ชื่อ สีเทาอ่อน */}
-          <p className="text-xl text-gray-400">
+          <p className="text-l sm:text-xl text-gray-400">
             <span className="text-gray-400">
               แพลนทริปอัจฉริยะ ครอบคลุมทุกมุมประเทศไทย{" "}
             </span>{" "}
-            <span className="text-gray-400 text-lg">
+            <span className="text-gray-400 text-base sm:text-lg ">
               เที่ยวง่าย ไม่สะดุด ครอบคลุมทุกที่ หมดห่วงเรื่องแพลน
             </span>
           </p>
@@ -222,7 +222,7 @@ const Guidepage = () => {
         {/* section  เกี่ยวกับ  (พื้นหลังขาว เงา มุมมน) */}
         <section id="about" className="bg-white shadow-md rounded-xl p-8 mb-12">
           {/* หัวข้อเกี่ยวกับ */}
-          <h2 className="text-3xl text-center font-semibold text-gray-800 mb-6">
+          <h2 className="text-xl sm:text-3xl text-center font-semibold text-gray-800 mb-6">
             เกี่ยวกับ Thaitrip
           </h2>
 
@@ -248,13 +248,13 @@ const Guidepage = () => {
                 </div>
 
                 {/* การจัดวางหัวข้อในช่อง */}
-                <h3 className="text-xl font-semibold mb-2 text-gray-800 text-center ">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800 text-center ">
                   {feature.title}
                 </h3>
 
                 {/* การจัดวางคำอธิบายเพิ่มเติมในช่อง*/}
-                <p className="text-gray-700 text-center">
-                  {feature.description}
+                <p className="text-base sm:text-lg text-gray-700 text-center">
+                  {feature.description} 
                 </p>
               </div>
             ))}
@@ -269,7 +269,7 @@ const Guidepage = () => {
           className="bg-white shadow-md rounded-xl p-8 mb-12"
         >
           {/* หัวข้อวิธีการใช้งาน */}
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+          <h2 className="text-xl sm:text-3xl font-semibold text-gray-800 mb-6 text-center">
             วิธีการใช้งาน
           </h2>
 
@@ -289,12 +289,12 @@ const Guidepage = () => {
                 </div>
 
                 {/* หัวข้อขั้นตอน */}
-                <h3 className="text-xl font-semibold mb-3 text-gray-800 text-center">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 text-gray-800 text-center">
                   {step.title}
                 </h3>
 
                 {/* คำอธิบายขั้นตอน */}
-                <p className="text-gray-700 text-center mb-4">
+                <p className=" text-base sm:text-lg text-gray-700 text-center mb-4">
                   {step.description}
                 </p>
 
@@ -320,14 +320,14 @@ const Guidepage = () => {
           className="bg-white p-8 overflow-hidden rounded-lg shadow-lg mb-12"
         >
           {/* หัวข้อ */}
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center ">
+          <h2 className="text-xl sm:text-3xl font-semibold text-gray-800 mb-6 text-center ">
             ทริกเด็ดในการใช้งาน ThaiTrip
           </h2>
 
           {/* เรียงกริด */}
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-            <h3 className="text-lg font-medium text-gray-800 text-center">
+            <h3 className="text-base sm:text-lg font-medium text-gray-800 text-center">
               🔥 ขอคำแนะนำเฉพาะเจาะจง
             </h3>
             <p className="text-gray-600 text-center">
@@ -338,7 +338,7 @@ const Guidepage = () => {
           </div>
 
           <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-            <h3 className="text-lg font-medium text-gray-800 text-center">
+            <h3 className="text-base sm:text-lg font-medium text-gray-800 text-center">
               🔥 อัปเดตข้อมูลตลอดเวลา
             </h3>
             <p className="text-gray-600 text-center">
@@ -347,7 +347,7 @@ const Guidepage = () => {
           </div>
 
           <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-            <h3 className="text-lg font-medium text-gray-800 text-center">
+            <h3 className="text-base sm:text-lg font-medium text-gray-800 text-center">
               🔥 ตั้งงบประมาณอย่างชัดเจน
             </h3>
             <p className="text-gray-600 text-center">
@@ -357,7 +357,7 @@ const Guidepage = () => {
           </div>
 
           <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
-            <h3 className="text-lg font-medium text-gray-800 text-center">
+            <h3 className="text-base sm:text-lg font-medium text-gray-800 text-center">
               🔥 ขอคำแนะนำทางภาษา
             </h3>
             <p className="text-gray-600 text-center">

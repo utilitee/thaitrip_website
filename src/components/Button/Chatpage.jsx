@@ -32,7 +32,7 @@ const ChatButton = () => {
         alt="Thaitrip Logo"
         className="h-10 w-10 transition-transform duration-300 hover:scale-110"
       />
-      <span className="text-gray-800 hover:text-red-700 transition-colors duration-300">
+      <span className=" text-sm sm:text-base  text-gray-800 hover:text-red-700 transition-colors duration-300">
         Chat With AI
       </span>
     </button>
