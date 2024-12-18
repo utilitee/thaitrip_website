@@ -20,7 +20,7 @@ function Imageslider() {
       >
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/imageforslide/thailand-2723974_1280.jpg"
+            src="/imageforslide/BANGKOK1 (2).png"
             alt="Image 1"
             className="w-full  h-68 object-cover rounded-lg"
           />
