@@ -197,7 +197,7 @@ const Guidepage = () => {
         <section className="bg-white shadow-md rounded-xl p-0 mb-6 md:mb-12">
           {/* กริดสำหรับแสดง ภาพ */}
           <div className="grid md:grid-cols-1 gap-0">
-            <h1 className="text-3xl font-bold text-center mb-4 className= text-gray-600">
+            <h1 className="text-xl sm:text-4xl font-bold text-center mt-8 mb-4  text-gray-600">
               Wanna explore Thailand ?
             </h1>
             {/* ภาพที่ 1 */}
@@ -319,12 +319,12 @@ const Guidepage = () => {
           id="tips"
           className="bg-white p-8 overflow-hidden rounded-lg shadow-lg mb-12"
         >
-          {/* หัวข้อวิธีการใช้งาน */}
+          {/* หัวข้อ */}
           <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center ">
             ทริกเด็ดในการใช้งาน ThaiTrip
           </h2>
 
-          {/* เรียงกริดขั้นตอนการใช้งาน */}
+          {/* เรียงกริด */}
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           <div className=" bg-gray-50 p-6 rounded-xl hover:shadow-md transition-all">
             <h3 className="text-lg font-medium text-gray-800 text-center">
@@ -371,7 +371,10 @@ const Guidepage = () => {
         {/*////////////////////////////////////////////////////////////////////// */}
 
         {/* Section อื่น ๆ เพิ่มเติม เผื่อมี */}
+
+        {/* ปุ่ม Scroll ขึ้น */}
         <ScrollToTopButton />
+
       </div>
     </>
   );

@@ -18,6 +18,7 @@ function Imageslider() {
         pagination={{ clickable: true }} // ปุ่ม pagination
         effect="slide" // เอฟเฟกต์การเลื่อนแบบ smooth
       >
+        {/* BANGKOK */}
         <SwiperSlide className="flex justify-center items-center">
           <img
             src="/imageforslide/BANGKOK1 (2).png"
@@ -26,52 +27,105 @@ function Imageslider() {
           />
         </SwiperSlide>
 
+        {/* YAOWARAT */}
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src=" /imageforslide/pexels-egonshotsphotos-2240361.jpg"
+            src="/imageforslide/YAOWARAT (1).png"
             alt="Image 1"
             className="w-full h-68 object-cover rounded-lg"
           />
         </SwiperSlide>
 
+        {/* PHUKET */}
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/imageforslide/bridge-praram8.jpg"
+            src="/imageforslide/PHUKET (1).png"
             alt="Image 1"
             className="w-full  h-68 object-cover rounded-lg"
           />
         </SwiperSlide>
 
+        {/* PHIPHI */}
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/imageforslide/pexels-freestockpro-1004366.jpg"
+            src="/imageforslide/PHIPHI.png"
             alt="Image 2"
             className="w-full h-68 object-cover rounded-lg"
           />
         </SwiperSlide>
+
+        {/* PATTAYA */}
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/imageforslide/chiang-mai.jpg"
+            src="/imageforslide/PATTAYA.png"
             alt="Image 1"
             className="w-full  h-68 object-cover rounded-lg"
           />
         </SwiperSlide>
 
+        {/* NIGHT MARKET */}
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/imageforslide/pexels-mikegles-29589429.jpg"
+            src="imageforslide/NIGHT MARKET.png"
             alt="Image 3"
             className="w-full h-68 object-cover rounded-lg"
           />
         </SwiperSlide>
 
+        {/* LOE*/}
         <SwiperSlide className="flex justify-center items-center">
           <img
-            src="/imageforslide/bangkok-2jpg.jpg"
+            src="/imageforslide/LOEI.png"
             alt="Image 4"
             className="w-full h-68 object-cover rounded-lg"
           />
         </SwiperSlide>
+
+        {/* KRABI */}
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/imageforslide/KRABI (1).png"
+            alt="Image 4"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+
+        {/* KRABI */}
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/imageforslide/KARNJANABURI.png"
+            alt="Image 4"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+
+        {/* CHIANG RAI*/}
+        <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/imageforslide/CHIANG RAI.png"
+            alt="Image 4"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+
+         {/* CHIANG MAI*/}
+         <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/imageforslide/CHIANG MAI.png"
+            alt="Image 4"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+
+         {/* BKK CITY*/}
+         <SwiperSlide className="flex justify-center items-center">
+          <img
+            src="/imageforslide/BKK CITY.png"
+            alt="Image 4"
+            className="w-full h-68 object-cover rounded-lg"
+          />
+        </SwiperSlide>
+
       </Swiper>
     </section>
   );
