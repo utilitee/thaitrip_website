@@ -343,6 +343,7 @@ const PlannerForm = () => {
                 placeholderText="วันไป"
                 className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-gray-200"
                 dateFormat="d MMMM yyyy"
+                minDate={new Date()} // ห้ามเลือกวันย้อนหลัง
               />
             </div>
 
@@ -358,6 +359,7 @@ const PlannerForm = () => {
                 placeholderText="วันกลับ"
                 className="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-gray-200"
                 dateFormat="d MMMM yyyy"
+                minDate={travelDates.start || new Date()} // ห้ามเลือกก่อนวันไป
               />
             </div>
           </div>
