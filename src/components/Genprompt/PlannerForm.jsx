@@ -290,7 +290,7 @@ const PlannerForm = () => {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4 
-    bg-[url('/images/prompt_bg.png')] bg-cover bg-center md:bg-fixed"
+    bg-[url('/images/prompt_bg.jpg')] bg-cover bg-center md:bg-fixed"
     >
       <div className="w-full max-w-4xl bg-white/70 shadow-lg rounded-xl p-6 space-y-6">
         <h2 className="text-l sm:text-xl font-bold text-gray-700 text-center mb-4 md:mb-6">
