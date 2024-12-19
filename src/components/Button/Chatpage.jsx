@@ -17,24 +17,25 @@ const ChatButton = () => {
       onClick={handleThaitripClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="btn text-xl flex items-center space-x-2 shadow-none border-none "
+      className="btn text-xl flex items-center space-x-1 shadow-red-800  border-red-700 "
       style={{
         // backgroundImage: isHovered
         //   ? "url('/images/Logo/HoverBackground.png')" // ภาพพื้นหลังเมื่อ hover
         //   : "url('/images/Logo/Background.png')", // ภาพพื้นหลังปกติ
-        backgroundColor: isHovered ? "#EEEEEE" : "#F8FAFC", 
+        backgroundColor: isHovered ? "#F8FAFC" : "#F8FAFC",
         backgroundSize: "cover", // ปรับขนาดภาพพื้นหลังให้เต็มปุ่ม
         backgroundPosition: "center", // จัดตำแหน่งภาพพื้นหลังให้อยู่ตรงกลาง
       }}
     >
-      <img
-        src={isHovered ? "/images/Logo/HoverLogo.png" : "/images/Logo/Logo.png"}
-        alt="Thaitrip Logo"
-        className="h-10 w-10 transition-transform duration-300 hover:scale-110"
-      />
       <span className=" text-sm sm:text-base  text-gray-800 hover:text-red-700 transition-colors duration-300">
         Chat With AI
       </span>
+      <img
+        src={isHovered ? "/images/Logo/HoverLogo.png" : "/images/Logo/Logo.png"}
+        alt="Thaitrip Logo"
+        className="h-10 w-10 transition-transform duration-300 hover:scale-110  "
+      />
+      
     </button>
   );
 };
