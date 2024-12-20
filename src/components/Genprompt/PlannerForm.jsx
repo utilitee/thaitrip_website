@@ -286,12 +286,19 @@ const PlannerForm = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center p-4 
-      
-      bg-[url('/images/BG-plannerfrom.png')] bg-cover bg-center md:bg-fixed" 
-      
+    
+    className="min-h-screen flex items-center justify-center p-4 bg-white"
+    
+    // className="min-h-screen flex items-center justify-center p-4 overflow-hidden rounded-lg bg-fixed"
+    // style={{
+    //   backgroundImage: "url('/images/BG-plannerfrom.png')",
+    //   backgroundSize: 'cover', // ถ้าใช้ 'contain' ขนาดจะเล็กลงตามจอ แต่มันจะเห็นไม่เต็มอะ
+    //   backgroundRepeat: 'no-repeat',
+    //   backgroundPosition: 'left center',  // จัดตำแหน่งภาพไปที่ซ้ายและตั้งกลางแนวตั้ง
+    // }}
 
     >
+
       <div className="w-full max-w-4xl bg-white/0 shadow-none rounded-xl p-6 space-y-6">
         <h2 className="text-l sm:text-xl font-bold text-gray-700 text-center mb-4 md:mb-6">
           วางแผนทริปท่องเที่ยว
@@ -429,6 +436,7 @@ const PlannerForm = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
