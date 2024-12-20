@@ -137,7 +137,7 @@ const customStyles = {
   }),
   placeholder: (base) => ({
     ...base,
-    paddingLeft: '5px', 
+    paddingLeft: "5px",
     color: "#9CA3AF",
     fontSize: "0.875rem",
   }),
@@ -162,9 +162,9 @@ const PlannerForm = () => {
     const countFilledFields = () => {
       let count = 0;
 
-       // ตรวจสอบว่า selectedProvince และ startLocation ถูกกรอกหรือไม่
-    const isProvinceValid = selectedProvince?.length > 0; // ต้องเลือกจังหวัดอย่างน้อย 1
-    const isStartLocationValid = !!startLocation; // ต้องกรอกจุดเริ่มต้น
+      // ตรวจสอบว่า selectedProvince และ startLocation ถูกกรอกหรือไม่
+      const isProvinceValid = selectedProvince?.length > 0; // ต้องเลือกจังหวัดอย่างน้อย 1
+      const isStartLocationValid = !!startLocation; // ต้องกรอกจุดเริ่มต้น
 
       // // Count filled fields
       // if (selectedProvince?.length > 0) count++;
@@ -179,18 +179,17 @@ const PlannerForm = () => {
       // setIsFormValid(count >= 3);
 
       // Count filled fields
-    if (isProvinceValid) count++;
-    if (isStartLocationValid) count++;
-    if (travelDates.start) count++;
-    if (travelDates.end) count++;
-    if (travelMethod) count++;
-    if (budget.trim()) count++;
-    if (specialRequest.trim()) count++;
+      if (isProvinceValid) count++;
+      if (isStartLocationValid) count++;
+      if (travelDates.start) count++;
+      if (travelDates.end) count++;
+      if (travelMethod) count++;
+      if (budget.trim()) count++;
+      if (specialRequest.trim()) count++;
 
-    setFilledFieldsCount(count);
-     // ต้องกรอก selectedProvince และ startLocation และกรอกข้อมูลช่องอื่นรวมกันให้ครบ 3 ช่องขึ้นไป
-     setIsFormValid(isProvinceValid && isStartLocationValid && count >= 3);
-    
+      setFilledFieldsCount(count);
+      // ต้องกรอก selectedProvince และ startLocation และกรอกข้อมูลช่องอื่นรวมกันให้ครบ 3 ช่องขึ้นไป
+      setIsFormValid(isProvinceValid && isStartLocationValid && count >= 3);
     };
 
     // countFilledFields นับจำนวนช่องที่ถูกกรอก ถ้ากรอกครบ 3 ช่องขึ้นไป จะทำให้ isFormValid เป็น true
@@ -204,22 +203,20 @@ const PlannerForm = () => {
     specialRequest,
   ]);
 
-
   // ตรวจสอบ isFormValid - ถ้ายังกรอกไม่ครบ 3 ช่องจะไม่ทำอะไร
   const handleSubmit = () => {
-
     // ตรวจสอบว่าผู้ใช้กรอก selectedProvince หรือยัง
     if (!selectedProvince || selectedProvince.length === 0) {
       alert("กรุณาเลือกจังหวัดปลายทาง");
       return;
     }
-  
+
     // ตรวจสอบว่าผู้ใช้กรอก startLocation หรือยัง
     if (!startLocation) {
       alert("กรุณาเลือกจังหวัดเริ่มต้น");
       return;
     }
-  
+
     // ตรวจสอบว่าฟอร์มครบตามเงื่อนไข (ช่องที่กรอกครบ 3 ช่องขึ้นไป)
     if (!isFormValid) {
       alert("กรุณากรอกข้อมูลให้ครบ 3 ช่องขึ้นไป");
@@ -290,9 +287,12 @@ const PlannerForm = () => {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4 
-    bg-[url('/images/artwork/prompt_bg.jpg')] bg-cover bg-center md:bg-fixed"
+      
+      bg-[url('/images/BG-plannerfrom.png')] bg-cover bg-center md:bg-fixed" 
+      
+
     >
-      <div className="w-full max-w-4xl bg-white/70 shadow-lg rounded-xl p-6 space-y-6">
+      <div className="w-full max-w-4xl bg-white/0 shadow-none rounded-xl p-6 space-y-6">
         <h2 className="text-l sm:text-xl font-bold text-gray-700 text-center mb-4 md:mb-6">
           วางแผนทริปท่องเที่ยว
         </h2>
@@ -416,7 +416,6 @@ const PlannerForm = () => {
         <div className="flex flex-col items-center mt-4">
           <button
             onClick={handleSubmit}
-            
             className={`w-full text-sm sm:text-base md:w-auto px-6 py-3 rounded-lg transition-all duration-300 ${
               !isFormValid
                 ? "bg-gray-300 cursor-not-allowed"

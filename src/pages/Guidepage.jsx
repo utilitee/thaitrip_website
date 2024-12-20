@@ -223,7 +223,9 @@ const Guidepage = () => {
         <section id="about" className="bg-white shadow-md rounded-xl p-8 mb-12">
           {/* หัวข้อเกี่ยวกับ */}
           <h2 className="text-xl sm:text-3xl text-center font-semibold text-gray-800 mb-6">
-            เกี่ยวกับ Thaitrip
+          <span className="text-gray-800">About</span>{" "}
+          <span className="text-red-700">ThaiTrip</span>
+             
           </h2>
 
           {/* กำหนด Layout ด้วย Tailwind*/}
@@ -270,7 +272,8 @@ const Guidepage = () => {
         >
           {/* หัวข้อวิธีการใช้งาน */}
           <h2 className="text-xl sm:text-3xl font-semibold text-gray-800 mb-6 text-center">
-            วิธีการใช้งาน
+          <span className="text-gray-800">How to Use</span>{" "}
+          <span className="text-red-700">ThaiTrip</span>
           </h2>
 
           {/* เรียงกริดขั้นตอนการใช้งาน */}
@@ -321,7 +324,9 @@ const Guidepage = () => {
         >
           {/* หัวข้อ */}
           <h2 className="text-xl sm:text-3xl font-semibold text-gray-800 mb-6 text-center ">
-            ทริกเด็ดในการใช้งาน ThaiTrip
+          <span className="text-gray-800">Chat Tips</span>{" "}
+          <span className="text-red-700">ThaiTrip</span>
+           
           </h2>
 
           {/* เรียงกริด */}

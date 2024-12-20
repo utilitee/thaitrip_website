@@ -37,7 +37,7 @@ export default function Navbar() {
           onClick={handleThaitripClick}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="btn btn-ghost text-xl flex items-center space-x-2 text-gray-500"
+          className="btn btn-ghost text-xl flex items-center space-x-2 text-red-700"
         >
           <img
             src={isHovered ? "/images/Logo/HoverLogo.png" : "/images/Logo/Logo.png"}

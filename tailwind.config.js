@@ -7,7 +7,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundSize: {
+        '50': '50%', // เพิ่มขนาด 50%
+      },
+    },
   },
   plugins: [daisyui],
 }
