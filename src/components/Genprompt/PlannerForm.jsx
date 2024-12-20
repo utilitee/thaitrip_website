@@ -286,19 +286,16 @@ const PlannerForm = () => {
 
   return (
     <div
-    
-    className="min-h-screen flex items-center justify-center p-4 bg-white"
-    
-    // className="min-h-screen flex items-center justify-center p-4 overflow-hidden rounded-lg bg-fixed"
-    // style={{
-    //   backgroundImage: "url('/images/BG-plannerfrom.png')",
-    //   backgroundSize: 'cover', // ถ้าใช้ 'contain' ขนาดจะเล็กลงตามจอ แต่มันจะเห็นไม่เต็มอะ
-    //   backgroundRepeat: 'no-repeat',
-    //   backgroundPosition: 'left center',  // จัดตำแหน่งภาพไปที่ซ้ายและตั้งกลางแนวตั้ง
-    // }}
+      className="min-h-screen flex items-center justify-center p-4 bg-white"
 
+      // className="min-h-screen flex items-center justify-center p-4 overflow-hidden rounded-lg bg-fixed"
+      // style={{
+      //   backgroundImage: "url('/images/BG-plannerfrom.png')",
+      //   backgroundSize: 'cover', // ถ้าใช้ 'contain' ขนาดจะเล็กลงตามจอ แต่มันจะเห็นไม่เต็มอะ
+      //   backgroundRepeat: 'no-repeat',
+      //   backgroundPosition: 'left center',  // จัดตำแหน่งภาพไปที่ซ้ายและตั้งกลางแนวตั้ง
+      // }}
     >
-
       <div className="w-full max-w-4xl bg-white/0 shadow-none rounded-xl p-6 space-y-6">
         <h2 className="text-l sm:text-xl font-bold text-gray-700 text-center mb-4 md:mb-6">
           วางแผนทริปท่องเที่ยว
@@ -310,7 +307,8 @@ const PlannerForm = () => {
           <div className="space-y-4">
             <div>
               <label className="block text-xs sm:text-sm font-medium text-gray-600 mb-2">
-                สถานที่เริ่มต้น
+                <span className="text-gray-600">สถานที่เริ่มต้น</span>
+                <span className="text-red-600">*</span>
               </label>
               <Select
                 options={startLocations}
@@ -323,7 +321,10 @@ const PlannerForm = () => {
 
             <div>
               <label className="block text-xs sm:text-sm font-medium text-gray-600 mb-2">
-                จังหวัดที่ต้องการท่องเที่ยว
+                <span className="text-gray-600">
+                  จังหวัดที่ต้องการท่องเที่ยว
+                </span>
+                <span className="text-red-600">*</span>
               </label>
               <Select
                 options={provinces}
@@ -436,7 +437,6 @@ const PlannerForm = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
